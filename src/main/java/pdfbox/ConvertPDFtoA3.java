@@ -55,36 +55,35 @@ public class ConvertPDFtoA3 {
 		File colorPFile = new File(pdfa3Components.getColorProfilePath());
 		InputStream colorProfile = new FileInputStream(colorPFile);
 
-
 		PDDocumentCatalog cat = makeA3compliant(doc, pdfa3Components);
-		if(cat==null) {
+		if (cat == null) {
 			System.out.println("Please check input file.");
 		} else {
 			attachFile(doc, pdfa3Components.getEmbedFilePath());
 			addOutputIntent(doc, cat, colorProfile);
 			doc.setVersion(pdfVer);
-	
+
 			doc.save(pdfa3Components.getOutputFilePath());
 			doc.close();
 			File outputFile = new File(pdfa3Components.getOutputFilePath());
-			
-			if (outputFile.exists()) {
-				
-				VeraGreenfieldFoundryProvider.initialise();
-		    	//PdfBoxFoundryProvider.initialise();
-		    	
-		    	VeraPDFFoundry instance = Foundries.defaultInstance();
 
-		    	PDFAParser parser = instance.createParser(new FileInputStream(pdfa3Components.getOutputFilePath()));
-		    	PDFAValidator validator = instance.createValidator(parser.getFlavour(), false);
-		    	ValidationResult result = validator.validate(parser);
-		    	
-		    	if (!result.isCompliant()) {
-//		    		System.out.println("no");
-		    		System.out.println("Please check input file.");
-		    	} else {
-		    		System.out.println(pdfa3Components.getOutputFilePath());
-		    	}
+			if (outputFile.exists()) {
+
+				VeraGreenfieldFoundryProvider.initialise();
+				// PdfBoxFoundryProvider.initialise();
+
+				VeraPDFFoundry instance = Foundries.defaultInstance();
+
+				PDFAParser parser = instance.createParser(new FileInputStream(pdfa3Components.getOutputFilePath()));
+				PDFAValidator validator = instance.createValidator(parser.getFlavour(), false);
+				ValidationResult result = validator.validate(parser);
+
+				if (!result.isCompliant()) {
+					// System.out.println("no");
+					System.out.println("Please check input file.");
+				} else {
+					System.out.println(pdfa3Components.getOutputFilePath());
+				}
 			} else {
 				System.out.println("Failed to convert.");
 			}
@@ -108,7 +107,7 @@ public class ConvertPDFtoA3 {
 		PDEmbeddedFilesNameTreeNode efTree = new PDEmbeddedFilesNameTreeNode();
 
 		File embedFile = new File(embedFilePath);
-		
+
 		String subType = Files.probeContentType(FileSystems.getDefault().getPath(embedFilePath));
 		String embedFileName = FilenameUtils.getName(embedFilePath);
 		// first create the file specification, which holds the embedded file
@@ -168,23 +167,23 @@ public class ConvertPDFtoA3 {
 
 		// use for eTax invoice only
 		Charset charset = StandardCharsets.UTF_8;
-		
-		VeraGreenfieldFoundryProvider.initialise();
-    	//PdfBoxFoundryProvider.initialise();
-    	
-    	VeraPDFFoundry instance = Foundries.defaultInstance();
 
-    	PDFAParser parser = instance.createParser(new FileInputStream(pdfa3Components.getInputFilePath()));
-    	PDFAValidator validator = instance.createValidator(parser.getFlavour(), false);
-    	ValidationResult result = validator.validate(parser);
-    	
-    	PDFAFlavour flavour = parser.getFlavour();
-    	String comformance = flavour.toString().substring(1);
-    	if (!result.isCompliant() && !flavour.toString().equalsIgnoreCase("1b")) {
-    		System.out.println("no");
-    		System.out.println(flavour);
-    		return null;
-    	}
+		VeraGreenfieldFoundryProvider.initialise();
+		// PdfBoxFoundryProvider.initialise();
+
+		VeraPDFFoundry instance = Foundries.defaultInstance();
+
+		PDFAParser parser = instance.createParser(new FileInputStream(pdfa3Components.getInputFilePath()));
+		PDFAValidator validator = instance.createValidator(parser.getFlavour(), false);
+		ValidationResult result = validator.validate(parser);
+
+		PDFAFlavour flavour = parser.getFlavour();
+		String comformance = flavour.toString().substring(1);
+		if (!result.isCompliant() && !flavour.toString().equalsIgnoreCase("1b")) {
+			System.out.println("no");
+			System.out.println(flavour);
+			return null;
+		}
 
 		byte[] fileBytes = Files.readAllBytes(new File(pdfa3Components.getXmpTemplatePath()).toPath());
 		String content = new String(fileBytes, charset);
@@ -192,11 +191,11 @@ public class ConvertPDFtoA3 {
 		content = content.replaceAll("@DocumentType", pdfa3Components.getDocumentType());
 		content = content.replaceAll("@DocumentVersion", pdfa3Components.getDocumentVersion());
 		content = content.replaceAll("<pdfaid:conformance>", "<pdfaid:conformance>" + comformance.toUpperCase());
-		
+
 		byte[] editedBytes = content.getBytes(charset);
 
 		metadata.importXMPMetadata(editedBytes);
-		
+
 		return cat;
 	}
 }
