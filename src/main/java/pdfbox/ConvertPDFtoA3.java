@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 
@@ -52,37 +53,35 @@ public class ConvertPDFtoA3 {
 	public static void Convert(PDFA3Components pdfa3Components) throws Exception {
 		File inputFile = new File(pdfa3Components.getInputFilePath());
 		PDDocument doc = PDDocument.load(inputFile);
-		File colorPFile = new File(pdfa3Components.getColorProfilePath());
-		InputStream colorProfile = new FileInputStream(colorPFile);
-
 		PDDocumentCatalog cat = makeA3compliant(doc, pdfa3Components);
+
 		if (cat == null) {
 			System.out.println("Please check input file.");
 		} else {
 			attachFile(doc, pdfa3Components.getEmbedFilePath());
-			addOutputIntent(doc, cat, colorProfile);
-			doc.setVersion(pdfVer);
 
+			File colorPFile = new File(pdfa3Components.getColorProfilePath());
+			InputStream colorProfile = new FileInputStream(colorPFile);
+			addOutputIntent(doc, cat, colorProfile);
+			
+			doc.setVersion(pdfVer);
 			doc.save(pdfa3Components.getOutputFilePath());
 			doc.close();
 			File outputFile = new File(pdfa3Components.getOutputFilePath());
 
 			if (outputFile.exists()) {
-
 				VeraGreenfieldFoundryProvider.initialise();
-				// PdfBoxFoundryProvider.initialise();
-
 				VeraPDFFoundry instance = Foundries.defaultInstance();
 
-				PDFAParser parser = instance.createParser(new FileInputStream(pdfa3Components.getOutputFilePath()));
-				PDFAValidator validator = instance.createValidator(parser.getFlavour(), false);
-				ValidationResult result = validator.validate(parser);
-
-				if (!result.isCompliant()) {
-					// System.out.println("no");
-					System.out.println("Please check input file.");
-				} else {
-					System.out.println(pdfa3Components.getOutputFilePath());
+				try (PDFAParser parser = instance.createParser(new FileInputStream(pdfa3Components.getOutputFilePath()))) {
+					try (PDFAValidator validator = instance.createValidator(parser.getFlavour(), false)) {
+						ValidationResult result = validator.validate(parser);
+						if (!result.isCompliant()) {
+							System.out.println("Please check input file.");
+						} else {
+							System.out.println(pdfa3Components.getOutputFilePath());
+						}
+					}
 				}
 			} else {
 				System.out.println("Failed to convert.");
@@ -93,53 +92,44 @@ public class ConvertPDFtoA3 {
 	private static void addOutputIntent(PDDocument doc, PDDocumentCatalog cat, InputStream colorProfile)
 			throws IOException {
 		if (cat.getOutputIntents().isEmpty()) {
+			String value = "sRGB IEC61966-2.1";
+			String registerName = "http://www.color.org";
+
 			PDOutputIntent oi = new PDOutputIntent(doc, colorProfile);
-			oi.setInfo("sRGB IEC61966-2.1");
-			oi.setOutputCondition("sRGB IEC61966-2.1");
-			oi.setOutputConditionIdentifier("sRGB IEC61966-2.1");
-			oi.setRegistryName("http://www.color.org");
+			oi.setInfo(value);
+			oi.setOutputCondition(value);
+			oi.setOutputConditionIdentifier(value);
+			oi.setRegistryName(registerName);
 			cat.addOutputIntent(oi);
 		}
 
 	}
 
 	private static void attachFile(PDDocument doc, String embedFilePath) throws IOException {
-		PDEmbeddedFilesNameTreeNode efTree = new PDEmbeddedFilesNameTreeNode();
-
-		File embedFile = new File(embedFilePath);
-
-		String subType = Files.probeContentType(FileSystems.getDefault().getPath(embedFilePath));
 		String embedFileName = FilenameUtils.getName(embedFilePath);
-		// first create the file specification, which holds the embedded file
 
 		PDComplexFileSpecification fs = new PDComplexFileSpecification();
 		fs.setFile(embedFileName);
 		COSDictionary dict = fs.getCOSObject();
-		// Relation "Source" for linking with eg. catalog
 		dict.setName("AFRelationship", "Source");
-
 		dict.setString("UF", embedFileName);
 
-		InputStream is = new FileInputStream(embedFile);
+		File embedFile = new File(embedFilePath);
+		try (InputStream is = new FileInputStream(embedFile)) {
+			String subType = Files.probeContentType(FileSystems.getDefault().getPath(embedFilePath));
+			PDEmbeddedFile ef = new PDEmbeddedFile(doc, is);
+			ef.setModDate(GregorianCalendar.getInstance());
+			ef.setSize((int) embedFile.length());
+			ef.setCreationDate(new GregorianCalendar());
+			fs.setEmbeddedFile(ef);
+			ef.setSubtype(subType);
+		}
 
-		PDEmbeddedFile ef = new PDEmbeddedFile(doc, is);
-
-		// set some of the attributes of the embedded file
-		ef.setModDate(GregorianCalendar.getInstance());
-
-		ef.setSize((int) embedFile.length());
-		ef.setCreationDate(new GregorianCalendar());
-		fs.setEmbeddedFile(ef);
-		ef.setSubtype(subType);
-
-		// now add the entry to the embedded file tree and set in the document.
+		PDEmbeddedFilesNameTreeNode efTree = new PDEmbeddedFilesNameTreeNode();
 		efTree.setNames(Collections.singletonMap(embedFileName, fs));
-
-		// attachments are stored as part of the "names" dictionary in the
-		PDDocumentCatalog catalog = doc.getDocumentCatalog();
-
 		PDDocumentNameDictionary names = new PDDocumentNameDictionary(doc.getDocumentCatalog());
 		names.setEmbeddedFiles(efTree);
+		PDDocumentCatalog catalog = doc.getDocumentCatalog();
 		catalog.setNames(names);
 
 		COSDictionary dict2 = catalog.getCOSObject();
@@ -160,41 +150,33 @@ public class ConvertPDFtoA3 {
 		pdi.setTitle(pdd.getTitle());
 		pdi.setSubject(pdd.getSubject());
 		pdi.setKeywords(pdd.getKeywords());
-
-		// Set OID
-		// pdi.setCustomMetadataValue("OID", "10.2.3.65.5");
 		doc.setDocumentInformation(pdi);
 
-		// use for eTax invoice only
 		Charset charset = StandardCharsets.UTF_8;
-
 		VeraGreenfieldFoundryProvider.initialise();
-		// PdfBoxFoundryProvider.initialise();
-
 		VeraPDFFoundry instance = Foundries.defaultInstance();
 
 		PDFAParser parser = instance.createParser(new FileInputStream(pdfa3Components.getInputFilePath()));
-		PDFAValidator validator = instance.createValidator(parser.getFlavour(), false);
-		ValidationResult result = validator.validate(parser);
+		try (PDFAValidator validator = instance.createValidator(parser.getFlavour(), false)) {
+			ValidationResult result = validator.validate(parser);
+			PDFAFlavour flavour = parser.getFlavour();
+			String comformance = flavour.toString().substring(1);
+			if (!result.isCompliant() && !flavour.toString().equalsIgnoreCase("1b")) {
+				System.out.println("no");
+				System.out.println(flavour);
+				return null;
+			}
 
-		PDFAFlavour flavour = parser.getFlavour();
-		String comformance = flavour.toString().substring(1);
-		if (!result.isCompliant() && !flavour.toString().equalsIgnoreCase("1b")) {
-			System.out.println("no");
-			System.out.println(flavour);
-			return null;
+			byte[] fileBytes = Files.readAllBytes(new File(pdfa3Components.getXmpTemplatePath()).toPath());
+			String content = new String(fileBytes, charset);
+			content = content.replace("@DocumentFileName", pdfa3Components.getDocumentFileName());
+			content = content.replace("@DocumentType", pdfa3Components.getDocumentType());
+			content = content.replace("@DocumentVersion", pdfa3Components.getDocumentVersion());
+			content = content.replace("<pdfaid:conformance>", "<pdfaid:conformance>" + comformance.toUpperCase());
+
+			byte[] editedBytes = content.getBytes(charset);
+			metadata.importXMPMetadata(editedBytes);
 		}
-
-		byte[] fileBytes = Files.readAllBytes(new File(pdfa3Components.getXmpTemplatePath()).toPath());
-		String content = new String(fileBytes, charset);
-		content = content.replaceAll("@DocumentFileName", pdfa3Components.getDocumentFileName());
-		content = content.replaceAll("@DocumentType", pdfa3Components.getDocumentType());
-		content = content.replaceAll("@DocumentVersion", pdfa3Components.getDocumentVersion());
-		content = content.replaceAll("<pdfaid:conformance>", "<pdfaid:conformance>" + comformance.toUpperCase());
-
-		byte[] editedBytes = content.getBytes(charset);
-
-		metadata.importXMPMetadata(editedBytes);
 
 		return cat;
 	}

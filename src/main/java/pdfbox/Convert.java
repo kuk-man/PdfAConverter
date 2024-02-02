@@ -23,17 +23,6 @@ public class Convert {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-
-		/**** Sample Input ****/
-		// String inputFilePath = "src/main/resources/sample.pdf";
-		// String embbedFilePath = "src/main/resources/ETDA-invoice.xml";
-		// String colorProfilePath = "src/main/resources/sRGB Color Space Profile.icm";
-		// String outputFilePath = "target/success.pdf";
-		// String documentType = "Tax Invoice";
-		// String docFileName = "ETDA-invoice.xml";
-		// String docVersion = "2.0";
-		// String xmpTemplatePath = "src/main/resources/xmpTemplate.xml";
-
 		String inputFilePath = args[0];
 		String embbedFilePath = args[1];
 		String colorProfilePath = args[2];
@@ -42,9 +31,18 @@ public class Convert {
 		String docFileName = args[5];
 		String docVersion = args[6];
 		String xmpTemplatePath = args[7];
-		PDFA3Components pdfa3Components = new PDFA3Components(inputFilePath, embbedFilePath, colorProfilePath,
+		String pkType = args[8];
+
+		signer.Xades signer = new signer.Xades(pkType);
+		String envelopedXML = "src/main/resources/enveloped_xml.xml";
+		signer.signEnvelopedXml(embbedFilePath, envelopedXML);
+
+		PDFA3Components pdfa3Components = new PDFA3Components(inputFilePath, envelopedXML, colorProfilePath,
 				outputFilePath, documentType, docFileName, docVersion, xmpTemplatePath);
 
 		ConvertPDFtoA3.Convert(pdfa3Components);
+
+		verifier.Xades verifier = new verifier.Xades();
+		verifier.verifyEnvelopedXml(envelopedXML);
 	}
 }
