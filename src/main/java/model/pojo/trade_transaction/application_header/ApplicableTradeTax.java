@@ -3,12 +3,10 @@ package model.pojo.trade_transaction.application_header;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import model.pojo.common.Amount;
 
 @JsonPropertyOrder({"typeCode", "calculatedRate", "basisAmount", "calculatedAmount"})
-@JacksonXmlRootElement(localName = "ram:ApplicableTradeTax")
 public class ApplicableTradeTax {
 
     @JacksonXmlProperty(localName = "ram:TypeCode")

@@ -3,14 +3,12 @@ package model.pojo.trade_transaction.trade_line_item;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import model.pojo.trade_transaction.application_header.ApplicableTradeTax;
 import model.pojo.trade_transaction.trade_line_item.charge.SpecifiedTradeAllowanceCharge;
 
 @JsonPropertyOrder({"applicableTradeTax", "specifiedTradeAllowanceCharge",
                     "specifiedTradeSettlementLineMonetarySummation"})
-@JacksonXmlRootElement(localName = "ram:SpecifiedLineTradeSettlement")
 public class SpecifiedLineTradeSettlement {
     
     @JacksonXmlElementWrapper(useWrapping = false)

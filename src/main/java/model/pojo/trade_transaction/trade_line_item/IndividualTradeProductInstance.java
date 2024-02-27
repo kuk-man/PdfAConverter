@@ -2,10 +2,8 @@ package model.pojo.trade_transaction.trade_line_item;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JsonPropertyOrder({"batchID", "expiryDateTime"})
-@JacksonXmlRootElement(localName = "ram:IndividualTradeProductInstance")
 public class IndividualTradeProductInstance {
 
     @JacksonXmlProperty(localName = "ram:BatchID")

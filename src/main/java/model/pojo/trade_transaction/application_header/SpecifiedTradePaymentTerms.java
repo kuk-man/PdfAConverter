@@ -3,12 +3,10 @@ package model.pojo.trade_transaction.application_header;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import model.pojo.common.Description;
 
 @JsonPropertyOrder({"description", "dueDateDateTime", "typeCode"})
-@JacksonXmlRootElement(localName = "ram:SpecifiedTradePaymentTerms")
 public class SpecifiedTradePaymentTerms {
 
     @JacksonXmlElementWrapper(useWrapping = false)

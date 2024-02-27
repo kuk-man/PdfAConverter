@@ -54,11 +54,12 @@ public class FormatChecker extends Checker{
     private String checkFormat(RootXml rootXml) {
         ErrorMessage errors = new ErrorMessage();
         Format format = new Format();
+        String object = "";
 
         // Percentage Rate
         // 3.3.2.2 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|ApplicableTradeTax|CalculatedRate
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|ApplicableTradeTax|CalculatedRate";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|ApplicableTradeTax|CalculatedRate";
             for (ApplicableTradeTax att : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()) {
                 if (!isNull(new N<>(() -> "" + att.getCalculatedRate()))) {
                     String rate = att.getCalculatedRate();
@@ -67,8 +68,8 @@ public class FormatChecker extends Checker{
             }
         }
         // 3.4.5.1.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedRate
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedRate";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedRate";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getApplicableTradeTax()))) {
                     for (ApplicableTradeTax att : isctli.getSpecifiedLineTradeSettlement().getApplicableTradeTax()) {
@@ -85,8 +86,8 @@ public class FormatChecker extends Checker{
         // Amount
         // 3.3.2.3 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|BasisAmount
         // 3.3.2.4 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|CalculatedAmount
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax";
             for (ApplicableTradeTax att : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()) {
                 if (!isNull(new N<>(() -> "" + att.getBasisAmount()))) {
                     for (Amount amount : att.getBasisAmount()) {
@@ -102,8 +103,8 @@ public class FormatChecker extends Checker{
             }
         }
         // 3.3.3.2 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeAllowanceCharge()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount";
             for (SpecifiedTradeAllowanceCharge stac : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeAllowanceCharge()) {
                 if (!isNull(new N<>(() -> "" + stac.getActualAmount()))) {
                     for (Amount amount : stac.getActualAmount()) {
@@ -120,8 +121,8 @@ public class FormatChecker extends Checker{
         // 3.3.5.5 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|ChargeTotalAmount
         // 3.3.5.6 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|TaxBasisTotalAmount
         // 3.3.5.7 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|TaxTotalAmount
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation";
             SpecifiedTradeSettlementHeaderMonetarySummation stshms = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation();
             for (Amount amount : stshms.getOriginalInformationAmount()) {
                 if (!isNull(new N<>(() -> "" + amount.getValue())))
@@ -166,8 +167,8 @@ public class FormatChecker extends Checker{
 
         // 3.4.3.1.1  SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|ChargeAmount
         // 3.4.3.1.2.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ActualAmount
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice()))) {
                     GrossPriceProductTradePrice  gpptp = isctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice();
@@ -194,8 +195,8 @@ public class FormatChecker extends Checker{
         }
         // 3.4.5.1.3 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|BasisAmount
         // 3.4.5.1.4 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedAmount
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getApplicableTradeTax()))) {
                     for (ApplicableTradeTax att : isctli.getSpecifiedLineTradeSettlement().getApplicableTradeTax()) {
@@ -217,8 +218,8 @@ public class FormatChecker extends Checker{
             }
         }
         // 3.4.5.2.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount";        
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()))) {
                     for (SpecifiedTradeAllowanceCharge stac : isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()) {
@@ -235,8 +236,8 @@ public class FormatChecker extends Checker{
         // 3.4.5.3.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|TaxTotalAmount
         // 3.4.5.3.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetLineTotalAmount
         // 3.4.5.3.3 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetIncludingTaxesLineTotalAmount
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation()))) {
                     SpecifiedTradeSettlementLineMonetarySummation stslms = isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation();
@@ -269,8 +270,8 @@ public class FormatChecker extends Checker{
         // Quantity
         // 3.4.4.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery|BilledQuantity
         // 3.4.4.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery|PerPackageUnitQuantity
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeDelivery()))) {
                     SpecifiedLineTradeDelivery  sltd = isctli.getSpecifiedLineTradeDelivery();
@@ -287,50 +288,50 @@ public class FormatChecker extends Checker{
 
         // ISO DateTime
         // 2.4 ExchangedDocument|IssueDateTime
+        object = "CrossIndustryInvoice|ExchangedDocument|IssueDateTime";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getIssueDateTime()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocument|IssueDateTime";
             String issueDateTime = rootXml.getCrossIndustryInvoice().getExchangedDocument().getIssueDateTime();
             format.checkIsoDateTime(issueDateTime, object, errors);
         }
         // 2.8 ExchangedDocument|CreationDateTime
+        object = "CrossIndustryInvoice|ExchangedDocument|CreationDateTime";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getCreationDateTime()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocument|CreationDateTime";
             String[] creationDateTimes = rootXml.getCrossIndustryInvoice().getExchangedDocument().getCreationDateTime();
             for (String creationDateTime : creationDateTimes) {
                 format.checkIsoDateTime(creationDateTime, object, errors);
             }
         }
         // 3.1.4.2 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerOrderReferencedDocument|IssueDateTime
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerOrderReferencedDocument|IssueDateTime";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerOrderReferencedDocument().getIssueDateTime()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerOrderReferencedDocument|IssueDateTime";
             String issueDateTime = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerOrderReferencedDocument().getIssueDateTime();
             format.checkIsoDateTime(issueDateTime, object, errors);
         }
         // 3.1.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssueDateTime
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getAdditionalReferencedDocument()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument";
             for (AdditionalReferencedDocument ard : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getAdditionalReferencedDocument()) {
                 if (!isNull(new N<>(() -> "" + ard.getIssueDateTime())))
                     format.checkIsoDateTime(ard.getIssueDateTime(), object + "|IssueDateTime", errors);
             }
         }
         // 3.2.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ActualDeliverySupplyChainEvent|OccurrenceDateTime
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ActualDeliverySupplyChainEvent|OccurrenceDateTime";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getActualDeliverySupplyChainEvent().getOccurrenceDateTime()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ActualDeliverySupplyChainEvent|OccurrenceDateTime";
             String issueDateTime = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getActualDeliverySupplyChainEvent().getOccurrenceDateTime();
             format.checkIsoDateTime(issueDateTime, object, errors);
         }
         // 3.3.4.2 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|DueDateDateTime
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|DueDateDateTime";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradePaymentTerms()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|DueDateDateTime";
             for (SpecifiedTradePaymentTerms stpt : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradePaymentTerms()) {
                 if (!isNull(new N<>(() -> "" + stpt.getDueDateDateTime())))
                     format.checkIsoDateTime(stpt.getDueDateDateTime(), object, errors);
             }
         }
         // 3.4.2.5.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|ExpiryDateTime
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|ExpiryDateTime";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|ExpiryDateTime";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getIndividualTradeProductInstance()))) {
                     for (IndividualTradeProductInstance itpi : isctli.getSpecifiedTradeProduct().getIndividualTradeProductInstance()) {
@@ -343,16 +344,16 @@ public class FormatChecker extends Checker{
 
         // TrueFalse
         // 3.3.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeAllowanceCharge()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator";
             for (SpecifiedTradeAllowanceCharge stac : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeAllowanceCharge()) {
                 if (!isNull(new N<>(() -> "" + stac.getChargeIndicator())))
                     format.checkTrueFalse(stac.getChargeIndicator(), object, errors);
             }
         }
         // 3.4.3.1.2.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ChargeIndicator
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ChargeIndicator";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ChargeIndicator";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice().getAppliedTradeAllowanceCharge()))) {
                     for (AppliedTradeAllowanceCharge atac : isctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice().getAppliedTradeAllowanceCharge()) {
@@ -363,8 +364,8 @@ public class FormatChecker extends Checker{
             }
         }
         // 3.4.5.2.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()))) {
                     for (SpecifiedTradeAllowanceCharge stac : isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()) {
@@ -377,8 +378,8 @@ public class FormatChecker extends Checker{
 
         // PhoneNumber
         // 3.2.1.4.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()))) {
                     String phoneNumber = dtc.getTelephoneUniversalCommunication().getCompleteNumber();
@@ -387,8 +388,8 @@ public class FormatChecker extends Checker{
             }
         }
         // 3.2.2.4.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()))) {
                     String phoneNumber = dtc.getTelephoneUniversalCommunication().getCompleteNumber();
@@ -400,8 +401,8 @@ public class FormatChecker extends Checker{
         // Max16Text
         // 3.1.1.6.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|PostcodeCode
         // 3.1.1.6.13 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress";
             InvolverTradeAddress ita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + ita.getPostcodeCode())))
                 format.check16Text(ita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -411,8 +412,8 @@ public class FormatChecker extends Checker{
         }
         // 3.1.2.6.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|PostcodeCode
         // 3.1.2.6.13 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress";
             InvolverTradeAddress ita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + ita.getPostcodeCode())))
                 format.check16Text(ita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -422,8 +423,8 @@ public class FormatChecker extends Checker{
         }
         // 3.2.1.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|PostcodeCode
         // 3.2.1.5.13 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress";
             ShipTradePostalTradeAddress sita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + sita.getPostcodeCode())))
                 format.check16Text(sita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -433,8 +434,8 @@ public class FormatChecker extends Checker{
         }
         // 3.2.2.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|PostcodeCode
         // 3.2.2.5.13 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress";
             ShipTradePostalTradeAddress sita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + sita.getPostcodeCode())))
                 format.check16Text(sita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -444,8 +445,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.3.3 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ReasonCode
         // 3.3.3.5 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|TypeCode
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeAllowanceCharge()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge";
             for (SpecifiedTradeAllowanceCharge stac : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeAllowanceCharge()) {
                 if (!isNull(new N<>(() -> "" + stac.getReasonCode())))
                     format.check16Text(stac.getReasonCode(), object + "|ReasonCode", errors);
@@ -456,8 +457,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.6.6.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|PostcodeCode
         // 3.3.6.6.13 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress";
             InvolverTradeAddress ita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + ita.getPostcodeCode())))
                 format.check16Text(ita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -467,8 +468,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.7.6.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|PostcodeCode
         // 3.3.7.6.13 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress";
             InvolverTradeAddress ita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + ita.getPostcodeCode())))
                 format.check16Text(ita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -478,8 +479,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.8.6.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|PostcodeCode
         // 3.3.8.6.13 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress";
             InvolverTradeAddress ita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + ita.getPostcodeCode())))
                 format.check16Text(ita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -489,8 +490,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.9.6.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|PostcodeCode
         // 3.3.9.6.13 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|BuildingNumber
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty().getPostalTradeAddress()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress";
             InvolverTradeAddress ita = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty().getPostalTradeAddress();
             if (!isNull(new N<>(() -> "" + ita.getPostcodeCode())))
                 format.check16Text(ita.getPostcodeCode(), object + "|PostcodeCode", errors);
@@ -500,8 +501,8 @@ public class FormatChecker extends Checker{
         }
         // 3.4.3.1.2.3 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ReasonCode
         // 3.4.3.1.2.5 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|TypeCode
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice().getAppliedTradeAllowanceCharge()))) {
                     for (AppliedTradeAllowanceCharge atac : isctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice().getAppliedTradeAllowanceCharge()) {
@@ -516,8 +517,8 @@ public class FormatChecker extends Checker{
         }
         // 3.4.5.2.3 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ReasonCode
         // 3.4.5.2.5 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|TypeCode
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()))) {
                     for (SpecifiedTradeAllowanceCharge stac : isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()) {
@@ -533,8 +534,8 @@ public class FormatChecker extends Checker{
         
         // Max35Text
         // 1.1.1 ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID
+        object = "CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocumentContext().getGuidelineSpecifiedDocumentContextParameter()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID";
             for (GuidelineSpecifiedDocumentContextParameter gsdcp : rootXml.getCrossIndustryInvoice().getExchangedDocumentContext().getGuidelineSpecifiedDocumentContextParameter()) {
                 if (!isNull(new N<>(() -> "" + gsdcp.getId()))) {
                     DocumentContextParameterID id = gsdcp.getId();
@@ -544,14 +545,14 @@ public class FormatChecker extends Checker{
             }
         }
         // 2.1 ExchangedDocument|ID
+        object = "CrossIndustryInvoice|ExchangedDocument|ID";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getId()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocument|ID";
             String id = rootXml.getCrossIndustryInvoice().getExchangedDocument().getId();
             format.check35Text(id, object, errors);
         }
         // 2.2 ExchangedDocument|Name
-        if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getName()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocument|Name";
+        object = "CrossIndustryInvoice|ExchangedDocument|Name";
+        if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getName()))) {    
             for (String name : rootXml.getCrossIndustryInvoice().getExchangedDocument().getName()) 
                 format.check35Text(name, object, errors);
         }
@@ -559,8 +560,8 @@ public class FormatChecker extends Checker{
         // 3.1.1.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|SpecifiedTaxRegistration|ID
         // 3.1.1.5.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
         // 3.1.1.6.12 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty";
             SellerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -590,8 +591,8 @@ public class FormatChecker extends Checker{
         // 3.1.2.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|SpecifiedTaxRegistration|ID
         // 3.1.2.5.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
         // 3.1.2.6.12 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty";
             BuyerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -618,14 +619,14 @@ public class FormatChecker extends Checker{
                 format.check35Text(tp.getPostalTradeAddress().getCountrySubDivisionID(), object + "|PostalTradeAddress|CountrySubDivisionID", errors);
         }
         // 3.1.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerOrderReferencedDocument|IssuerAssignedID
+        object = "SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerOrderReferencedDocument|IssuerAssignedID";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerOrderReferencedDocument().getIssuerAssignedID()))) {
-            String object = "SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerOrderReferencedDocument|IssuerAssignedID";
             String issuerAssignedID = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerOrderReferencedDocument().getIssuerAssignedID();
             format.check35Text(issuerAssignedID, object, errors);
         }
         // 3.1.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssuerAssignedID
+        object = "SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssuerAssignedID";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getAdditionalReferencedDocument()))) {
-            String object = "SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssuerAssignedID";
             for (AdditionalReferencedDocument ard : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getAdditionalReferencedDocument()) {            
                 if (!isNull(new N<>(() -> "" + ard.getIssuerAssignedID())))
                     format.check35Text(ard.getIssuerAssignedID(), object, errors);
@@ -633,8 +634,8 @@ public class FormatChecker extends Checker{
         }
         // 3.2.1.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|ID
         // 3.2.1.5.12 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradePart";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradePart";
             ShipToTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -651,8 +652,8 @@ public class FormatChecker extends Checker{
         }
         // 3.2.2.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|ID
         // 3.2.2.5.12 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
             ShipFromTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -671,8 +672,8 @@ public class FormatChecker extends Checker{
         // 3.3.6.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|SpecifiedTaxRegistration|ID
         // 3.3.6.5.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
         // 3.3.6.6.12 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";        
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
             InvoicerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -702,8 +703,8 @@ public class FormatChecker extends Checker{
         // 3.3.7.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|SpecifiedTaxRegistration|ID
         // 3.3.7.5.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
         // 3.3.7.6.12 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty";
             InvoiceeTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -733,8 +734,8 @@ public class FormatChecker extends Checker{
         // 3.3.8.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|SpecifiedTaxRegistration|ID
         // 3.3.8.5.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
         // 3.3.8.6.12 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty";        
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty";
             PayerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -764,8 +765,8 @@ public class FormatChecker extends Checker{
         // 3.3.9.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|SpecifiedTaxRegistration|ID
         // 3.3.9.5.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber
         // 3.3.9.6.12 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|CountrySubDivisionID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty";
             PayeeTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getId()))) {
@@ -792,8 +793,8 @@ public class FormatChecker extends Checker{
                 format.check35Text(tp.getPostalTradeAddress().getCountrySubDivisionID(), object + "|PostalTradeAddress|CountrySubDivisionID", errors);
         }
         // 3.4.1.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument|LineID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument|LineID";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument|LineID";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getAssociatedDocumentLineDocument().getLineID())))
                     format.check35Text(isctli.getAssociatedDocumentLineDocument().getLineID(), object, errors);
@@ -802,8 +803,8 @@ public class FormatChecker extends Checker{
         // 3.4.2.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|ID
         // 3.4.2.5.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|BatchID
         // 3.4.2.6.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|DesignatedProductClassification|ClassCode
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getId())))
                     format.check35Text(isctli.getSpecifiedTradeProduct().getId(), object + "|ID", errors);
@@ -823,8 +824,8 @@ public class FormatChecker extends Checker{
         
         // Max70Text
         // 2.7 ExchangedDocument|GlobalID
+        object = "CrossIndustryInvoice|ExchangedDocument|GlobalID";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getGlobalID()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocument|GlobalID";
             ID id = rootXml.getCrossIndustryInvoice().getExchangedDocument().getGlobalID();
             if (!isNull(new N<>(() -> "" + id.getValue())))
                 format.check70Text(id.getValue(), object, errors);
@@ -837,8 +838,8 @@ public class FormatChecker extends Checker{
         // 3.1.1.6.8 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|StreetName
         // 3.1.1.6.9 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|CityName
         // 3.1.1.6.10 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty";
             SellerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -870,8 +871,8 @@ public class FormatChecker extends Checker{
         // 3.1.2.6.8 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|StreetName
         // 3.1.2.6.9 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|CityName
         // 3.1.2.6.10 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty";
             BuyerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -902,8 +903,8 @@ public class FormatChecker extends Checker{
         // 3.2.1.5.8 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|StreetName
         // 3.2.1.5.9 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|CityName
         // 3.2.1.5.10 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty";
             ShipToTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -934,8 +935,8 @@ public class FormatChecker extends Checker{
         // 3.2.2.5.8 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|StreetName
         // 3.2.2.5.9 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|CityName
         // 3.2.2.5.10 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
             ShipFromTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -967,8 +968,8 @@ public class FormatChecker extends Checker{
         // 3.3.6.6.8 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|StreetName
         // 3.3.6.6.9 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|CityName
         // 3.3.6.6.10 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
             InvoicerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -1000,8 +1001,8 @@ public class FormatChecker extends Checker{
         // 3.3.7.6.8 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|StreetName
         // 3.3.7.6.9 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|CityName
         // 3.3.7.6.10 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty";        
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty";
             InvoiceeTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -1033,8 +1034,8 @@ public class FormatChecker extends Checker{
         // 3.3.8.6.8 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|StreetName
         // 3.3.8.6.9 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|CityName
         // 3.3.8.6.10 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty";
             PayerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -1066,8 +1067,8 @@ public class FormatChecker extends Checker{
         // 3.3.9.6.8 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|StreetName
         // 3.3.9.6.9 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|CityName
         // 3.3.9.6.10 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|CitySubDivisionName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty";
             PayeeTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty();
 
             if (!isNull(new N<>(() -> "" + tp.getGlobalID()))) {
@@ -1092,8 +1093,8 @@ public class FormatChecker extends Checker{
                 format.check70Text(tp.getPostalTradeAddress().getCitySubDivisionName(), object + "|PostalTradeAddress|CitySubDivisionName", errors);
         }
         // 3.4.2.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|GlobalID
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getGlobalID().getValue())))
                     format.check70Text(isctli.getSpecifiedTradeProduct().getGlobalID().getValue(), object + "|GlobalID", errors);
@@ -1103,8 +1104,8 @@ public class FormatChecker extends Checker{
         // Max140Text
         // 3.1.1.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|DefinedTradeContact|PersonName
         // 3.1.1.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|DefinedTradeContact|DepartmentName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|DefinedTradeContact";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|DefinedTradeContact";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getPersonName())))
                     format.check140Text(dtc.getPersonName(), object + "|PersonName", errors);
@@ -1114,8 +1115,8 @@ public class FormatChecker extends Checker{
         }
         // 3.1.2.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|PersonName
         // 3.1.2.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|DepartmentName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getPersonName())))
                     format.check140Text(dtc.getPersonName(), object + "|PersonName", errors);
@@ -1127,8 +1128,8 @@ public class FormatChecker extends Checker{
         // 3.2.1.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|PersonName
         // 3.2.1.4.2 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|DepartmentName
         // 3.2.1.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|BuildingName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty";
             ShipToTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1151,8 +1152,8 @@ public class FormatChecker extends Checker{
         // 3.2.2.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|PersonName
         // 3.2.2.4.2 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|DepartmentName
         // 3.2.2.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|BuildingName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
             ShipFromTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1173,8 +1174,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.6.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|PersonName
         // 3.3.6.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|DepartmentName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getPersonName())))
                     format.check140Text(dtc.getPersonName(), object + "|PersonName", errors);
@@ -1184,8 +1185,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.7.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|PersonName
         // 3.3.7.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|DepartmentName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getPersonName())))
                     format.check140Text(dtc.getPersonName(), object + "|PersonName", errors);
@@ -1195,8 +1196,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.8.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|PersonName
         // 3.3.8.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|DepartmentName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getPersonName())))
                     format.check140Text(dtc.getPersonName(), object + "|PersonName", errors);
@@ -1206,8 +1207,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.9.5.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|PersonName
         // 3.3.9.5.2 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|DepartmentName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty().getDefinedTradeContact()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact";
             for (DefinedTradeContact dtc : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty().getDefinedTradeContact()) {
                 if (!isNull(new N<>(() -> "" + dtc.getPersonName())))
                     format.check140Text(dtc.getPersonName(), object + "|PersonName", errors);
@@ -1218,8 +1219,8 @@ public class FormatChecker extends Checker{
 
         // Max256Text
         // 2.5 ExchangedDocument|Purpose
+        object = "CrossIndustryInvoice|ExchangedDocument|Purpose";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurpose()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocument|Purpose";
             String purpose = rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurpose();
             format.check256Text(purpose, object, errors);
         }
@@ -1228,8 +1229,8 @@ public class FormatChecker extends Checker{
         // 3.1.1.5.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.1.1.6.3 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|LineOne
         // 3.1.1.6.4 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|SellerTradeParty";
             SellerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getSellerTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1251,8 +1252,8 @@ public class FormatChecker extends Checker{
         // 3.1.2.5.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.1.2.6.3 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|LineOne
         // 3.1.2.6.4 SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty";
             BuyerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1273,8 +1274,8 @@ public class FormatChecker extends Checker{
         // 3.2.1.4.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.2.1.5.3 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|LineOne
         // 3.2.1.5.4 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty";        
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty";
             ShipToTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getDefinedTradeContact()))) {
@@ -1292,8 +1293,8 @@ public class FormatChecker extends Checker{
         // 3.2.2.4.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.2.2.5.3 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|LineOne
         // 3.2.2.5.4 SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty";
             ShipFromTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getDefinedTradeContact()))) {
@@ -1310,8 +1311,8 @@ public class FormatChecker extends Checker{
         }
         // 3.3.3.4  SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|Reason
         // 3.3.4.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|Description
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement";
             ApplicableHeaderTradeSettlement ahts = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement();
 
             if (!isNull(new N<>(() -> "" + ahts.getSpecifiedTradeAllowanceCharge()))) {
@@ -1336,8 +1337,8 @@ public class FormatChecker extends Checker{
         // 3.3.6.5.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.3.6.6.3 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|LineOne
         // 3.3.6.6.4 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
             InvoicerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1359,8 +1360,8 @@ public class FormatChecker extends Checker{
         // 3.3.7.5.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.3.7.6.3 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|LineOne
         // 3.3.7.6.4 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty";
             InvoiceeTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1382,8 +1383,8 @@ public class FormatChecker extends Checker{
         // 3.3.8.5.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.3.8.6.3 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|LineOne
         // 3.3.8.6.4 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty";        
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty";
             PayerTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1405,8 +1406,8 @@ public class FormatChecker extends Checker{
         // 3.3.9.5.3.1 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID
         // 3.3.9.6.3 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|LineOne
         // 3.3.9.6.4 SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|PostalTradeAddress|LineTwo
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty";
             PayeeTradeParty tp = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty();
                 
             if (!isNull(new N<>(() -> "" + tp.getName())))
@@ -1427,8 +1428,8 @@ public class FormatChecker extends Checker{
         // 3.4.2.3 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|Name
         // 3.4.2.4 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|Description
         // 3.4.2.6.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|DesignatedProductClassification|ClassName
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct";
             for (IncludedSupplyChainTradeLineItem iscli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + iscli.getSpecifiedTradeProduct()))) {
                     SpecifiedTradeProduct stp = iscli.getSpecifiedTradeProduct();
@@ -1457,8 +1458,8 @@ public class FormatChecker extends Checker{
         }
 
         // 3.4.3.1.2.4 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|Reason
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|Reason";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|Reason";
             for (IncludedSupplyChainTradeLineItem icsctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + icsctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice().getAppliedTradeAllowanceCharge()))) {
                     for (AppliedTradeAllowanceCharge atac : icsctli.getSpecifiedLineTradeAgreement().getGrossPriceProductTradePrice().getAppliedTradeAllowanceCharge()) {
@@ -1469,8 +1470,8 @@ public class FormatChecker extends Checker{
             }
         }
         // 3.4.5.2.4 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|Reason
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|Reason";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|Reason";
             for (IncludedSupplyChainTradeLineItem icsctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + icsctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()))) {
                     for (SpecifiedTradeAllowanceCharge stac : icsctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()) {
@@ -1484,8 +1485,8 @@ public class FormatChecker extends Checker{
         // Max500Text
         // 2.9.1 ExchangedDocument|IncludedNote|Subject
         // 2.9.2 ExchangedDocument|IncludedNote|Content
+        object = "CrossIndustryInvoice|ExchangedDocument|IncludedNote|Content";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getIncludedNote()))) {
-            String object = "CrossIndustryInvoice|ExchangedDocument|IncludedNote|Content";
             for (IncludedNote in : rootXml.getCrossIndustryInvoice().getExchangedDocument().getIncludedNote()) {
                 if (!isNull(new N<>(() -> "" + in.getSubject())))
                     format.check500Text(in.getSubject(), object + "|Subject", errors);
@@ -1499,8 +1500,8 @@ public class FormatChecker extends Checker{
         }
         // 3.4.2.8.1 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote|Subject
         // 3.4.2.8.2 SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote|Content
+        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
-            String object = "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote";
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getInformationNote()))) {
                     for (InformationNote in : isctli.getSpecifiedTradeProduct().getInformationNote()) {

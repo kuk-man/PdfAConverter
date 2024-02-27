@@ -3,14 +3,12 @@ package model.pojo.trade_transaction.trade_line_item;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import model.pojo.common.GlobalID;
 import model.pojo.common.Name;
 
 @JsonPropertyOrder({"id", "globalID", "name", "description", "individualTradeProductInstance", 
                     "designatedProductClassification", "originTradeCountry", "informationNote"})
-@JacksonXmlRootElement(localName = "ram:SpecifiedTradeProduct")
 public class SpecifiedTradeProduct {
     
     @JacksonXmlProperty(localName = "ram:ID")

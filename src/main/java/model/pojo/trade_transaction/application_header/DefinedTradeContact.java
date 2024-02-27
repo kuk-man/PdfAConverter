@@ -2,13 +2,11 @@ package model.pojo.trade_transaction.application_header;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import model.pojo.trade_transaction.application_header.communication.EmailURIUniversalCommunication;
 import model.pojo.trade_transaction.application_header.communication.TelephoneUniversalCommunication;
 
 @JsonPropertyOrder({"personName", "departmentName", "emailURIUniversalCommunication", "telephoneUniversalCommunication"})
-@JacksonXmlRootElement(localName = "ram:DefinedTradeContact")
 public class DefinedTradeContact {
 
     @JacksonXmlProperty(localName = "ram:PersonName")

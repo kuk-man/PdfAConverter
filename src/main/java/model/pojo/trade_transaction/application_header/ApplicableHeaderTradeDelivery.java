@@ -2,13 +2,11 @@ package model.pojo.trade_transaction.application_header;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import model.pojo.trade_transaction.application_header.tradeparty.ShipFromTradeParty;
 import model.pojo.trade_transaction.application_header.tradeparty.ShipToTradeParty;
 
 @JsonPropertyOrder({"shipToTradeParty", "shipFromTradeParty", "actualDeliverySupplyChainEvent"})
-@JacksonXmlRootElement(localName = "ram:ApplicableHeaderTradeDelivery")
 public class ApplicableHeaderTradeDelivery {
     
     @JacksonXmlProperty(localName = "ram:ShipToTradeParty")

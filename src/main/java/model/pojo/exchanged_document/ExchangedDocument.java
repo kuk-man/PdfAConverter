@@ -3,13 +3,11 @@ package model.pojo.exchanged_document;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import model.pojo.common.ID;
 
 @JsonPropertyOrder({"id", "name", "typeCode", "issueDateTime", "purpose", "purposeCode", "globalID", 
                     "creationDateTime", "includedNote"})
-@JacksonXmlRootElement(localName = "rsm:ExchangedDocument")
 public class ExchangedDocument {
     
     @JacksonXmlProperty(localName = "ram:ID")

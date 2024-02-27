@@ -3,10 +3,8 @@ package model.pojo.common;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JsonPropertyOrder({"chargeIndicator, actualAmount, reasonCode, reason, typeCode"})
-@JacksonXmlRootElement(localName = "ram:Charge")
 public class Charge {
 
     @JacksonXmlProperty(localName = "ram:ChargeIndicator")
