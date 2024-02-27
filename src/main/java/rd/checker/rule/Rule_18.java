@@ -15,9 +15,9 @@ public class Rule_18 {
         }
 
         try {
-            Integer.parseInt(value);
+            Float.parseFloat(value);
         } catch (NumberFormatException ex) {
-            errors.setErrorMassage("Check " + object + ": Invalid Quantity (Numeric). Current Quantity = " + value);
+            errors.setErrorMassage("Check " + object + ": Invalid Quantity (Float). Current Quantity = " + value);
         }
     }
 }

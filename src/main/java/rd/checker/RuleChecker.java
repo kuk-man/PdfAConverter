@@ -96,6 +96,7 @@ public class RuleChecker extends Checker {
             (new Rule_3()).checkExchangedDocumentTypeCodeAndTypeName(transactionType, ed, invoiceTypeCodeToName, taxInvoiceTypeCodeToName, object, errors);
         }
 
+        // ???
         // // rule 8.4
         // // (2.5) ExchangedDocument|Purpose
         // if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurpose()))) {
@@ -627,6 +628,7 @@ public class RuleChecker extends Checker {
         (new Rule_22()).checkGlobalID(value, object, errors);
     }
 
+    // ???
     // // rule 8.23
     // // (3.3.6) SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty
     // if (isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {
