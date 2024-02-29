@@ -124,44 +124,61 @@ public class FormatChecker extends Checker {
         object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation";
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation()))) {
             SpecifiedTradeSettlementHeaderMonetarySummation stshms = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation();
-            for (Amount amount : stshms.getOriginalInformationAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|OriginalInformationAmount", errors);
+            
+            if (stshms.getOriginalInformationAmount() != null) {
+                for (Amount amount : stshms.getOriginalInformationAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|OriginalInformationAmount", errors);
+                }
             }
 
-            for (Amount amount : stshms.getLineTotalAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|LineTotalAmount", errors);
+            if (stshms.getLineTotalAmount() != null) {
+                for (Amount amount : stshms.getLineTotalAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|LineTotalAmount", errors);
+                }
             }
 
-            for (Amount amount : stshms.getDifferenceInformationAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|DifferenceInformationAmount", errors);
+            if (stshms.getDifferenceInformationAmount() != null) {
+                for (Amount amount : stshms.getDifferenceInformationAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|DifferenceInformationAmount", errors);
+                }
             }
 
-            for (Amount amount : stshms.getAllowanceTotalAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|AllowanceTotalAmount", errors);
+            if (stshms.getAllowanceTotalAmount() != null) {
+                for (Amount amount : stshms.getAllowanceTotalAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|AllowanceTotalAmount", errors);
+                }
             }
 
-            for (Amount amount : stshms.getChargeTotalAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|ChargeTotalAmount", errors);
+            if (stshms.getChargeTotalAmount() != null) {
+                for (Amount amount : stshms.getChargeTotalAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|ChargeTotalAmount", errors);
+                }
             }
 
-            for (Amount amount : stshms.getTaxBasisTotalAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|TaxBasisTotalAmount", errors);
+            if (stshms.getChargeTotalAmount() != null) {
+                for (Amount amount : stshms.getTaxBasisTotalAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|TaxBasisTotalAmount", errors);
+                }
             }
 
-            for (Amount amount : stshms.getTaxTotalAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|TaxTotalAmount", errors);
+            if (stshms.getTaxTotalAmount() != null) {
+                for (Amount amount : stshms.getTaxTotalAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|TaxTotalAmount", errors);
+                }
             }
 
-            for (Amount amount : stshms.getGrandTotalAmount()) {
-                if (!isNull(new N<>(() -> "" + amount.getValue())))
-                    format.checkAmount(amount.getValue(), object + "|GrandTotalAmount", errors);
+            if (stshms.getGrandTotalAmount() != null) {
+                for (Amount amount : stshms.getGrandTotalAmount()) {
+                    if (!isNull(new N<>(() -> "" + amount.getValue())))
+                        format.checkAmount(amount.getValue(), object + "|GrandTotalAmount", errors);
+                }
             }
         }
 
@@ -808,10 +825,12 @@ public class FormatChecker extends Checker {
             for (IncludedSupplyChainTradeLineItem isctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getId())))
                     format.check35Text(isctli.getSpecifiedTradeProduct().getId(), object + "|ID", errors);
-
-                for (IndividualTradeProductInstance itpi : isctli.getSpecifiedTradeProduct().getIndividualTradeProductInstance()) {
-                    if (!isNull(new N<>(() -> "" + itpi.getBatchID())))
-                        format.check35Text(itpi.getBatchID(), object + "|IndividualTradeProductInstance|BatchID", errors);
+                
+                if (!isNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getIndividualTradeProductInstance()))) {
+                    for (IndividualTradeProductInstance itpi : isctli.getSpecifiedTradeProduct().getIndividualTradeProductInstance()) {
+                        if (!isNull(new N<>(() -> "" + itpi.getBatchID())))
+                            format.check35Text(itpi.getBatchID(), object + "|IndividualTradeProductInstance|BatchID", errors);
+                    }
                 }
 
                 if (!isNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getDesignatedProductClassification().getClassCode()))) {

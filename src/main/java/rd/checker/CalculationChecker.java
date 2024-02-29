@@ -14,16 +14,18 @@ public class CalculationChecker extends Checker {
     public String verifyCalculations(RootXml rootXml) {
         String errorMessage = checkCalculation(rootXml);
         if (!errorMessage.isBlank())
-            return "Check Formats:\n" + errorMessage;
+            return "Check Calculation:\n" + errorMessage;
         return "";
     }
 
     private String checkCalculation(RootXml rootXml) {
         ErrorMessage errors = new ErrorMessage();
 
-        checkLineTotalAmount(rootXml, errors);
-        checkGrandTotalAmount(rootXml, errors);
-        checkDifferenceTotalAmount(rootXml, errors);
+        if ("DCN".equals(rootXml.getTransaction())) {
+            checkLineTotalAmount(rootXml, errors);
+            checkGrandTotalAmount(rootXml, errors);
+            checkDifferenceTotalAmount(rootXml, errors);
+        }
 
         if (!errors.getErrorMessage().isBlank())
             return errors.getErrorMessage();
@@ -64,7 +66,7 @@ public class CalculationChecker extends Checker {
                         if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                             String value = amount.getValue() == null ? "" : amount.getValue();
                             try {
-                                sumLineTotalAmount += Float.parseFloat(value);
+                                sumBasisAmount += Float.parseFloat(value);
                             } catch (NumberFormatException ex) {
                                 errors.setErrorMassage("Check " + object2 + ": Invalid BasisAmount (Float). Current BasisAmount = " + value);
                             }
@@ -222,7 +224,7 @@ public class CalculationChecker extends Checker {
         if (hasDifferenceInformationAmount.equals(Boolean.TRUE)) {
             if (hasOriginalInformationAmount && hasLineTotalAmount) {
                 if (!sumDifferenceInformationAmount.equals(sumOriginalInformationAmount + sumLineTotalAmount)) {
-                    errors.setErrorMassage("Check " + object1 + " or " + object2 + " or " + object3 + ": DifferenceInformationAmount must be equal to OriginalInformationAmount - LineTotalAmount. Current DifferenceInformationAmount = " + hasDifferenceInformationAmount.toString() + ", OriginalInformationAmount = " + sumOriginalInformationAmount.toString() + ", LineTotalAmount = " + sumLineTotalAmount.toString());
+                    errors.setErrorMassage("Check " + object1 + " or " + object2 + " or " + object3 + ": DifferenceInformationAmount must be equal to OriginalInformationAmount - LineTotalAmount. Current DifferenceInformationAmount = " + sumDifferenceInformationAmount.toString() + ", OriginalInformationAmount = " + sumOriginalInformationAmount.toString() + ", LineTotalAmount = " + sumLineTotalAmount.toString());
                 }
             } else {
                 errors.setErrorMassage("Check " + object2 + " or " + object3 + ": DifferenceInformationAmount Calculation must have OriginalInformationAmount and LineTotalAmount. Current Has OriginalInformationAmount = " + hasOriginalInformationAmount.toString() + ", Has LineTotalAmount = " + hasLineTotalAmount.toString());
