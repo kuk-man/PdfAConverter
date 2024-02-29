@@ -20,21 +20,21 @@ public class Rule_6 extends Checker {
                 regex = "^[A-Z0-9]{13}$";
                 pattern = Pattern.compile(regex);
                 if (!pattern.matcher(value).matches()) {
-                    errors.setErrorMassage("Check " + object + ": Invalid ID (13 characters of A-Z/0-9). Current ID = " + id + "");
+                    errors.setErrorMassage("Check " + object + ": Invalid ID (13 characters of A-Z/0-9). Current ID = " + value + "");
                 }
             break;
             case "TXID": 
                 regex = "^[0-9]{18}$";
                 pattern = Pattern.compile(regex);
                 if (!pattern.matcher(value).matches()) {
-                    errors.setErrorMassage("Check " + object + ": Invalid ID (18 numerics of 0-9). Current ID = " + id + "");
+                    errors.setErrorMassage("Check " + object + ": Invalid ID (18 numerics of 0-9). Current ID = " + value + "");
                 }
             break;
             case "NIDN": 
                 regex = "^[0-9]{13}$";
                 pattern = Pattern.compile(regex);
                 if (!pattern.matcher(value).matches()) {
-                    errors.setErrorMassage("Check " + object + ": Invalid ID (13 numberics of 0-9). Current ID = " + id + "");
+                    errors.setErrorMassage("Check " + object + ": Invalid ID (13 numberics of 0-9). Current ID = " + value + "");
                 }
             break;
             case "CCPT":
@@ -42,7 +42,7 @@ public class Rule_6 extends Checker {
             break;
             case "OTHR":
                 if ("N/A".equals(id)) {
-                    errors.setErrorMassage("Check " + object + ": Invalid ID (\"N/A\"). Current ID = " + id + "");
+                    errors.setErrorMassage("Check " + object + ": Invalid ID (\"N/A\"). Current ID = " + value + "");
                 }
             break;
             default:

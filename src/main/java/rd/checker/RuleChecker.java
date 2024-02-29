@@ -21,6 +21,7 @@ import model.pojo.trade_transaction.trade_line_item.DesignatedProductClassificat
 import model.pojo.trade_transaction.trade_line_item.IncludedSupplyChainTradeLineItem;
 import model.pojo.trade_transaction.trade_line_item.IndividualTradeProductInstance;
 import model.pojo.trade_transaction.trade_line_item.SpecifiedTradeProduct;
+import model.pojo.trade_transaction.application_header.ApplicableTradeTax;
 import model.pojo.trade_transaction.application_header.SpecifiedTradePaymentTerms;
 import model.pojo.trade_transaction.application_header.SpecifiedTradeSettlementHeaderMonetarySummation;
 import rd.checker.rule.Rule_12;
@@ -494,9 +495,11 @@ public class RuleChecker extends Checker {
         // rule 8.15
         // (3.3.2.1) SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|TypeCode
         object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|TypeCode";
-        if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceCurrencyCode()))) {
-            String taxCode = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceCurrencyCode();
-            (new Rule_15()).checkTaxCode(taxCode, taxCodes, object, errors);
+        if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()))) {
+            for (ApplicableTradeTax att : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()) {
+                if (!isNull(new N<>(() -> "" + att.getTypeCode())))
+                    (new Rule_15()).checkTaxCode(att.getTypeCode(), taxCodes, object, errors);
+            }
         }
 
         // rule 8.16
@@ -587,7 +590,7 @@ public class RuleChecker extends Checker {
     if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()))) {
         for (IncludedSupplyChainTradeLineItem tsctli : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getIncludedSupplyChainTradeLineItem()) {
             if (!isNull(new N<>(() -> "" + tsctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation().getNetIncludingTaxesLineTotalAmount()))) {
-                Amount[] amounts = tsctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation().getNetLineTotalAmount();
+                Amount[] amounts = tsctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation().getNetIncludingTaxesLineTotalAmount();
                 for (Amount amount : amounts) {
                     (new Rule_19()).checkAmountAndCurrencyCode(amount, currencyCodes, object, errors);
                 }

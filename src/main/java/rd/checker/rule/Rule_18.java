@@ -8,7 +8,7 @@ import model.pojo.common.Quantity;
 public class Rule_18 {
     public void checkUnitCodeAndQuantity(Quantity quantity, List<String> unitCodes, String object, ErrorMessage errors){
         String unitCode = quantity.getUnitCode() == null ? "" : quantity.getUnitCode();
-        String value = quantity.getUnitCode() == null ? "" : quantity.getValue();
+        String value = quantity.getValue() == null ? "" : quantity.getValue();
 
         if (!unitCodes.contains(unitCode)) {
             errors.setErrorMassage("Check " + object + ": UnitCode is not in the list. Current UnitCode = " + unitCode);
