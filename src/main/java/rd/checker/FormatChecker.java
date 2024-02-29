@@ -38,7 +38,7 @@ import model.pojo.trade_transaction.application_header.tradeparty.PayeeTradePart
 import model.pojo.trade_transaction.application_header.tradeparty.PayerTradeParty;
 import rd.checker.format.Format;
 
-public class FormatChecker extends Checker{
+public class FormatChecker extends Checker {
 
     public FormatChecker() { 
         errors = new ErrorMessage();
@@ -1518,7 +1518,6 @@ public class FormatChecker extends Checker{
             }
         }
             
-
         errors = format.getError();
         if (!errors.getErrorMessage().isBlank())
             return errors.getErrorMessage();

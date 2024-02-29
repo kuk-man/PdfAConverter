@@ -23,6 +23,8 @@ public class TaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + gsdcp.getId()),
                     "CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
         }
         // 2
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument()),
@@ -99,6 +101,10 @@ public class TaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + ard.getReferenceTypeCode()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|ReferenceTypeCode");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssuerAssignedID");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssueDateTime");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|ReferenceTypeCode");
         }
         // 3.2
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery()),
@@ -130,6 +136,11 @@ public class TaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + att.getCalculatedAmount()),
                 "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|CalculatedAmount");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|TypeCode");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|CalculatedRate");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|BasisAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|CalculatedAmount");
         }
         // 3.3.5
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation()),
@@ -265,6 +276,11 @@ public class TaxInvoiceMandatoryField extends MandatoryFieldChecker {
                         checkValue(new N<>(() -> "" + satt.getCalculatedAmount()),
                             "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedAmount");
                     }
+                } else {
+                    errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|TypeCode");
+                    errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedRate");
+                    errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|BasisAmount");
+                    errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedAmount");
                 }
         // 3.4.5.3
                 checkValue(new N<>(() -> "" + isctlt.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation()),
@@ -276,9 +292,25 @@ public class TaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + isctlt.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation().getNetIncludingTaxesLineTotalAmount()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetIncludingTaxesLineTotalAmount");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument|LineID");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|Name");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|ChargeAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|TypeCode");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedRate");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|BasisAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetLineTotalAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetIncludingTaxesLineTotalAmount");
         }
-        
-        // no need        
     }
 
     public void checkNotUsedField(RootXml rootXml) {

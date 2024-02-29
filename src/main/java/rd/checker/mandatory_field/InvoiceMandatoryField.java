@@ -21,6 +21,8 @@ public class InvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + gsdcp.getId()),
                     "CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
         }
         // 2
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument()),
@@ -148,6 +150,15 @@ public class InvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + isctlt.getSpecifiedLineTradeSettlement()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument|LineID");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|Name");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|ChargeAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement");
         }
     }
 

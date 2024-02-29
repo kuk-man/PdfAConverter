@@ -62,7 +62,7 @@ public class Rule_16 extends Checker {
                     for (Amount amount : totalAmounts) {
                         // Value
                         if (!isNull(new N<>(() -> "" + amount.getValue()))) {
-                            String value = amount.getValue() == null ? "0.0" : amount.getValue();
+                            String value = amount.getValue() == null ? "" : amount.getValue();
                             try {
                                 totalAmount += Float.parseFloat(value);
                             } catch (NumberFormatException ex) {
@@ -82,7 +82,7 @@ public class Rule_16 extends Checker {
                     for (Amount amount : totalAmounts) {
                         // Value
                         if (!isNull(new N<>(() -> "" + amount.getValue()))) {
-                            String value = amount.getValue() == null ? "0.0" : amount.getValue();
+                            String value = amount.getValue() == null ? "" : amount.getValue();
                             try {
                                 totalAmount += Float.parseFloat(value);
                             } catch (NumberFormatException ex) {

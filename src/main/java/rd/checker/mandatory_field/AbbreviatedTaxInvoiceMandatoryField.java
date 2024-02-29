@@ -23,6 +23,8 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + gsdcp.getId()),
                     "CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
         }
         // 2
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument()),
@@ -126,6 +128,19 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + isctlt.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation().getNetIncludingTaxesLineTotalAmount()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetIncludingTaxesLineTotalAmount");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument|LineID");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|Name");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|ChargeAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetLineTotalAmount");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetIncludingTaxesLineTotalAmount");
         }
     }
 
@@ -172,6 +187,13 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.1.2.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty().getPostalTradeAddress()),
@@ -248,6 +270,10 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + ard.getReferenceTypeCode()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|ReferenceTypeCode");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssuerAssignedID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssueDateTime");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|ReferenceTypeCode");
         }
         // 3.3.5.1
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation().getOriginalInformationAmount()),
@@ -297,6 +323,13 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.3.6.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty().getPostalTradeAddress()),
@@ -382,6 +415,13 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.3.7.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty().getPostalTradeAddress()),
@@ -467,6 +507,13 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.3.8.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty().getPostalTradeAddress()),
@@ -552,6 +599,13 @@ public class AbbreviatedTaxInvoiceMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.3.9.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty().getPostalTradeAddress()),

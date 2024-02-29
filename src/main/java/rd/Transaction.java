@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import model.pojo.RootXml;
+import rd.checker.CalculationChecker;
 import rd.checker.FormatChecker;
 import rd.checker.RuleChecker;
 import rd.checker.TransactionMandatoryFieldChecker;
@@ -77,6 +78,10 @@ public class Transaction {
             return errorMessage;
             
         // calculation checker
+        CalculationChecker calculationChecker = new CalculationChecker();
+        errorMessage = calculationChecker.verifyCalculations(rootXml);
+        if (!errorMessage.isBlank())
+            return errorMessage;
 
         return "";
     }

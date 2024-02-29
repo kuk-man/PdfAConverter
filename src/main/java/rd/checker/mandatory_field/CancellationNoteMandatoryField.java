@@ -29,6 +29,8 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + gsdcp.getId()),
                     "CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|ExchangedDocumentContext|GuidelineSpecifiedDocumentContextParameter|ID");
         }
         // 2
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument()),
@@ -87,6 +89,10 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkValue(new N<>(() -> "" + ard.getReferenceTypeCode()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|ReferenceTypeCode");
             }
+        } else {
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssuerAssignedID");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|IssueDateTime");
+            errors.setErrorMassage("Missing CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|AdditionalReferencedDocument|ReferenceTypeCode");
         }
         // 3.3
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement()),
@@ -154,6 +160,13 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeAgreement|BuyerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.1.2.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeAgreement().getBuyerTradeParty().getPostalTradeAddress()),
@@ -248,6 +261,11 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipToTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.2.1.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipToTradeParty().getPostalTradeAddress()),
@@ -321,6 +339,11 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeDelivery|ShipFromTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.2.2.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeDelivery().getShipFromTradeParty().getPostalTradeAddress()),
@@ -391,6 +414,11 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + att.getCalculatedAmount()),
                 "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|CalculatedAmount");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|TypeCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|CalculatedRate");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|BasisAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|CalculatedAmount");
         }
         // 3.3.3
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeAllowanceCharge()),
@@ -413,6 +441,12 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
             checkNull(new N<>(() -> "" + stac.getTypeCode()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|TypeCode");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|ReasonCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|Reason");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeAllowanceCharge|TypeCode");
         }
         // 3.3.4
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradePaymentTerms()),
@@ -429,6 +463,10 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
             checkNull(new N<>(() -> "" + stpt.getTypeCode()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|TypeCode");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|Description");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|DueDateDateTime");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradePaymentTerms|TypeCode");
         }
         // 3.3.5
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation()),
@@ -499,6 +537,13 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoiceeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.3.7.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoiceeTradeParty().getPostalTradeAddress()),
@@ -584,6 +629,13 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayerTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.3.8.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayerTradeParty().getPostalTradeAddress()),
@@ -669,6 +721,13 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + dtc.getTelephoneUniversalCommunication().getCompleteNumber()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|PersonName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|DepartmentName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|EmailURIUniversalCommunication|URIID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|PayeeTradeParty|DefinedTradeContact|TelephoneUniversalCommunication|CompleteNumber");
         }
         // 3.3.9.6
         checkNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getPayeeTradeParty().getPostalTradeAddress()),
@@ -750,6 +809,9 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                         checkNull(new N<>(() -> "" + itpi.getExpiryDateTime()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|ExpiryDateTime");
                     }
+                } else {
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|BatchID");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|ExpiryDateTime");                    
                 }
         // 3.4.2.6
                 checkNull(new N<>(() -> "" + isctli.getSpecifiedTradeProduct().getDesignatedProductClassification()),
@@ -778,6 +840,9 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                         checkNull(new N<>(() -> "" + in.getContent()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote|Content");
                     }
+                } else {
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote|Subject");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote|Content");
                 }
         // 3.4.3
                 checkNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeAgreement()),
@@ -809,6 +874,12 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                         checkNull(new N<>(() -> "" + atac.getTypeCode()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|TypeCode");
                     }
+                } else {
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ChargeIndicator");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ActualAmount");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ReasonCode");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|Reason");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|TypeCode");
                 }
         // 3.4.4
                 checkNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeDelivery()),
@@ -840,6 +911,11 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                         checkNull(new N<>(() -> "" + att.getCalculatedAmount()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedAmount");
                     }
+                } else {
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|TypeCode");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedRate");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|BasisAmount");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedAmount");
                 }
         // 3.4.5.2
                 checkNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeAllowanceCharge()),
@@ -862,6 +938,12 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                         checkNull(new N<>(() -> "" + stac.getTypeCode()),
                     "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|TypeCode");
                     }
+                } else {
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ReasonCode");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|Reason");
+                    errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|TypeCode");
                 }
         // 3.4.5.3
                 checkNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation()),
@@ -876,6 +958,53 @@ public class CancellationNoteMandatoryField extends MandatoryFieldChecker {
                 checkNull(new N<>(() -> "" + isctli.getSpecifiedLineTradeSettlement().getSpecifiedTradeSettlementLineMonetarySummation().getNetIncludingTaxesLineTotalAmount()),
             "CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetIncludingTaxesLineTotalAmount");
             }
+        } else {
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|AssociatedDocumentLineDocument|LineID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|ID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|GlobalID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|Name");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|Description");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|BatchID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|IndividualTradeProductInstance|ExpiryDateTime");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|DesignatedProductClassification");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|DesignatedProductClassification|ClassCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|DesignatedProductClassification|ClassName");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|OriginTradeCountry");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|OriginTradeCountry|ID");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote|Subject");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedTradeProduct|InformationNote|Content");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|ChargeAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ChargeIndicator");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ActualAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|ReasonCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|Reason");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeAgreement|GrossPriceProductTradePrice|AppliedTradeAllowanceCharge|TypeCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery|BilledQuantity");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeDelivery|PerPackageUnitQuantity");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|TypeCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedRate");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|BasisAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|ApplicableTradeTax|CalculatedAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ChargeIndicator");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ActualAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|ReasonCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|Reason");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeAllowanceCharge|TypeCode");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|TaxTotalAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetLineTotalAmount");
+            errors.setErrorMassage("Delete CrossIndustryInvoice|SupplyChainTradeTransaction|IncludedSupplyChainTradeLineItem|SpecifiedLineTradeSettlement|SpecifiedTradeSettlementLineMonetarySummation|NetIncludingTaxesLineTotalAmount");            
         }
     }
 }
