@@ -1,5 +1,6 @@
 package rd.checker.format;
 
+import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
 import model.ErrorMessage;
@@ -13,9 +14,9 @@ public class Format  extends Checker {
         // baseValue: 100.0
         
         try {
-            Float.parseFloat(percentageRage);
-        } catch (NumberFormatException ex) {
-            errors.setErrorMassage("Check " + object + ": Invalid PercentageRage (Float). Current PercentageRage = " + percentageRage);
+            new BigDecimal(percentageRage);
+        } catch (NullPointerException ex) {
+            errors.setErrorMassage("Check " + object + ": Invalid PercentageRage (Decimal). Current PercentageRage = " + percentageRage);
         }
     }
 
@@ -26,9 +27,9 @@ public class Format  extends Checker {
         // totalDigits: 18
         
         try {
-            Float.parseFloat(amount);
-        } catch (NumberFormatException ex) {
-            errors.setErrorMassage("Check " + object + ": Invalid Amount (Float). Current Amount = " + amount);
+            new BigDecimal(amount);
+        } catch (NullPointerException ex) {
+            errors.setErrorMassage("Check " + object + ": Invalid Amount (Decimal). Current Amount = " + amount);
         }
     }
 
@@ -38,9 +39,9 @@ public class Format  extends Checker {
         // totalDigits: 18
 
         try {
-            Float.parseFloat(quantity);
-        } catch (NumberFormatException ex) {
-            errors.setErrorMassage("Check " + object + ": Invalid Quantity (Float). Current Quantity = " + quantity);
+            new BigDecimal(quantity);
+        } catch (NullPointerException ex) {
+            errors.setErrorMassage("Check " + object + ": Invalid Quantity (Decimal). Current Quantity = " + quantity);
         }
     }
 

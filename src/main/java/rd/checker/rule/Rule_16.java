@@ -1,5 +1,6 @@
 package rd.checker.rule;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import model.ErrorMessage;
@@ -24,7 +25,7 @@ public class Rule_16 extends Checker {
 
     private void checkAllowanceCharge(Charge[] allowanceCharges, SpecifiedTradeSettlementHeaderMonetarySummation monetarySummation, 
         String object1, String object2, ErrorMessage errors){
-        Float sumAmount = 0.0f;
+        BigDecimal sumAmount = new BigDecimal(0);
         for (Charge allowanceCharge : allowanceCharges) {
             // ChargeIndicator
             if (!isNull(new N<>(() -> "" + allowanceCharge.getChargeIndicator()))) {
@@ -36,9 +37,10 @@ public class Rule_16 extends Checker {
                         for (Amount actualAmount : actualAmounts) {   
                             String value = actualAmount.getValue() == null ? "0.0" : actualAmount.getValue();
                             try {
-                                sumAmount += Float.parseFloat(value);
-                            } catch (NumberFormatException ex) {
-                                errors.setErrorMassage("Check " + object1 + "|ActualAmount: Invalid ActualAmount (Float). Current ActualAmount = " + value);
+                                BigDecimal amountValue = new BigDecimal(value);
+                                sumAmount = sumAmount.add(amountValue);
+                            } catch (NullPointerException ex) {
+                                errors.setErrorMassage("Check " + object1 + "|ActualAmount: Invalid ActualAmount (BigDecimal). Current ActualAmount = " + value);
                             }
                         }
                     }
@@ -51,9 +53,9 @@ public class Rule_16 extends Checker {
         }
     }
 
-    private void checkTotalAmount(String chargeIndicator, Float sumAmount, SpecifiedTradeSettlementHeaderMonetarySummation monetarySummation, 
+    private void checkTotalAmount(String chargeIndicator, BigDecimal sumAmount, SpecifiedTradeSettlementHeaderMonetarySummation monetarySummation, 
         String object1, String object2, ErrorMessage errors) {
-        Float totalAmount = 0.0f;
+        BigDecimal totalAmount = new BigDecimal(0);
         switch (chargeIndicator) {
             case "True":
                 // ChargeTotalAmount
@@ -64,9 +66,10 @@ public class Rule_16 extends Checker {
                         if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                             String value = amount.getValue() == null ? "" : amount.getValue();
                             try {
-                                totalAmount += Float.parseFloat(value);
-                            } catch (NumberFormatException ex) {
-                                errors.setErrorMassage("Check " + object2 + "|ChargeTotalAmount: Invalid ChargeTotalAmount (Float). Current ChargeTotalAmount = " + value);
+                                BigDecimal amountValue = new BigDecimal(value);
+                                totalAmount = totalAmount.add(amountValue);
+                            } catch (NullPointerException ex) {
+                                errors.setErrorMassage("Check " + object2 + "|ChargeTotalAmount: Invalid ChargeTotalAmount (Decimal). Current ChargeTotalAmount = " + value);
                             }
                         }
                     }
@@ -84,9 +87,10 @@ public class Rule_16 extends Checker {
                         if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                             String value = amount.getValue() == null ? "" : amount.getValue();
                             try {
-                                totalAmount += Float.parseFloat(value);
-                            } catch (NumberFormatException ex) {
-                                errors.setErrorMassage("Check " + object2 + "|AllowanceTotalAmount: Invalid AllowanceTotalAmount (Float). Current AllowanceTotalAmount = " + value);
+                                BigDecimal amountValue = new BigDecimal(value);
+                                totalAmount = totalAmount.add(amountValue);
+                            } catch (NullPointerException ex) {
+                                errors.setErrorMassage("Check " + object2 + "|AllowanceTotalAmount: Invalid AllowanceTotalAmount (Decimal). Current AllowanceTotalAmount = " + value);
                             }
                         }
                     }

@@ -1,5 +1,7 @@
 package rd.checker;
 
+import java.math.BigDecimal;
+
 import model.ErrorMessage;
 import model.pojo.RootXml;
 import model.pojo.common.Amount;
@@ -39,16 +41,17 @@ public class CalculationChecker extends Checker {
         // Sum LineTotalAmount
         String object1 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|LineTotalAmount";
         boolean hasLineTotalAmount = false;
-        Float sumLineTotalAmount = 0.0f;
+        BigDecimal sumLineTotalAmount = new BigDecimal(0);
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation().getLineTotalAmount()))) {
             hasLineTotalAmount = true;
             for (Amount amount : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation().getLineTotalAmount()) {
                 if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                     String value = amount.getValue() == null ? "" : amount.getValue();
                     try {
-                        sumLineTotalAmount += Float.parseFloat(value);
-                    } catch (NumberFormatException ex) {
-                        errors.setErrorMassage("Check " + object1 + ": Invalid LineTotalAmount (Float). Current LineTotalAmount = " + value);
+                        BigDecimal amountValue = new BigDecimal(value);
+                        sumLineTotalAmount = sumLineTotalAmount.add(amountValue);
+                    } catch (NullPointerException  ex) {
+                        errors.setErrorMassage("Check " + object1 + ": Invalid LineTotalAmount (Decimal). Current LineTotalAmount = " + value);
                     }
                 }
             }
@@ -57,7 +60,7 @@ public class CalculationChecker extends Checker {
         // Sum BasisAmount
         String object2 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|ApplicableTradeTax|BasisAmount";
         boolean hasBasisAmount = false;
-        Float sumBasisAmount = 0.0f;
+        BigDecimal sumBasisAmount = new BigDecimal(0);
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()))) {
             for (ApplicableTradeTax att : rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getApplicableTradeTax()) {
                 if (!isNull(new N<>(() -> "" + att.getBasisAmount()))) {
@@ -66,9 +69,10 @@ public class CalculationChecker extends Checker {
                         if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                             String value = amount.getValue() == null ? "" : amount.getValue();
                             try {
-                                sumBasisAmount += Float.parseFloat(value);
-                            } catch (NumberFormatException ex) {
-                                errors.setErrorMassage("Check " + object2 + ": Invalid BasisAmount (Float). Current BasisAmount = " + value);
+                                BigDecimal amountValue = new BigDecimal(value);
+                                sumBasisAmount = sumBasisAmount.add(amountValue);
+                            } catch (NullPointerException ex) {
+                                errors.setErrorMassage("Check " + object2 + ": Invalid BasisAmount (Decimal). Current BasisAmount = " + value);
                             }
                         }
                     }
@@ -89,15 +93,15 @@ public class CalculationChecker extends Checker {
         // GrandTotalAmount = DifferenceInformationAmount + TaxTotalAmount
         String object1 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|GrandTotalAmount";
         Boolean hasGrandTotalAmount = Boolean.FALSE;
-        Float sumGrandTotalAmount = 0.0f;
+        BigDecimal sumGrandTotalAmount = new BigDecimal(0);
 
         String object2 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|DifferenceInformationAmount";
         Boolean hasDifferenceInformationAmount = Boolean.FALSE;
-        Float sumDifferenceInformationAmount = 0.0f;
+        BigDecimal sumDifferenceInformationAmount = new BigDecimal(0);
 
         String object3 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|TaxTotalAmount";
         Boolean hasTaxTotalAmount = Boolean.FALSE;
-        Float sumTaxTotalAmount = 0.0f;
+        BigDecimal sumTaxTotalAmount = new BigDecimal(0);
 
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation()))) {
             SpecifiedTradeSettlementHeaderMonetarySummation stshms = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation();
@@ -108,9 +112,10 @@ public class CalculationChecker extends Checker {
                     if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                         String value = amount.getValue() == null ? "" : amount.getValue();
                         try {
-                            sumGrandTotalAmount += Float.parseFloat(value);
-                        } catch (NumberFormatException ex) {
-                            errors.setErrorMassage("Check " + object1 + ": Invalid GrandTotalAmount (Float). Current GrandTotalAmount = " + value);
+                            BigDecimal amountValue = new BigDecimal(value);
+                            sumGrandTotalAmount = sumGrandTotalAmount.add(amountValue);
+                        } catch (NullPointerException ex) {
+                            errors.setErrorMassage("Check " + object1 + ": Invalid GrandTotalAmount (Decimal). Current GrandTotalAmount = " + value);
                         }
                     }
                 }
@@ -123,9 +128,10 @@ public class CalculationChecker extends Checker {
                     if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                         String value = amount.getValue() == null ? "" : amount.getValue();
                         try {
-                            sumDifferenceInformationAmount += Float.parseFloat(value);
-                        } catch (NumberFormatException ex) {
-                            errors.setErrorMassage("Check " + object2 + ": Invalid DifferenceInformationAmount (Float). Current DifferenceInformationAmount = " + value);
+                            BigDecimal amountValue = new BigDecimal(value);
+                            sumDifferenceInformationAmount = sumDifferenceInformationAmount.add(amountValue);
+                        } catch (NullPointerException ex) {
+                            errors.setErrorMassage("Check " + object2 + ": Invalid DifferenceInformationAmount (Decimal). Current DifferenceInformationAmount = " + value);
                         }
                     }
                 }
@@ -137,9 +143,10 @@ public class CalculationChecker extends Checker {
                     if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                         String value = amount.getValue() == null ? "" : amount.getValue();
                         try {
-                            sumTaxTotalAmount += Float.parseFloat(value);
-                        } catch (NumberFormatException ex) {
-                            errors.setErrorMassage("Check " + object3 + ": Invalid TaxTotalAmount (Float). Current TaxTotalAmount = " + value);
+                            BigDecimal amountValue = new BigDecimal(value);
+                            sumTaxTotalAmount = sumTaxTotalAmount.add(amountValue);
+                        } catch (NullPointerException ex) {
+                            errors.setErrorMassage("Check " + object3 + ": Invalid TaxTotalAmount (Decimal). Current TaxTotalAmount = " + value);
                         }
                     }
                 }
@@ -148,7 +155,7 @@ public class CalculationChecker extends Checker {
 
         if (hasGrandTotalAmount.equals(Boolean.TRUE)) {
             if (hasDifferenceInformationAmount && hasTaxTotalAmount) {
-                if (!sumGrandTotalAmount.equals(sumDifferenceInformationAmount + sumTaxTotalAmount)) {
+                if (!sumGrandTotalAmount.equals(sumDifferenceInformationAmount.add(sumTaxTotalAmount))) {
                     errors.setErrorMassage("Check " + object1 + " or " + object2 + " or " + object3 + ": GrandTotalAmount must be equal to DifferenceInformationAmount + TaxTotalAmount. Current GrandTotalAmount = " + sumGrandTotalAmount.toString() + ", DifferenceInformationAmount = " + sumDifferenceInformationAmount.toString() + ", TaxTotalAmount = " + sumTaxTotalAmount.toString());
                 }
             } else {
@@ -164,15 +171,15 @@ public class CalculationChecker extends Checker {
         // DifferenceInformationAmount = OriginalInformationAmount - LineTotalAmount
         String object1 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|DifferenceInformationAmount";
         Boolean hasDifferenceInformationAmount = Boolean.FALSE;
-        Float sumDifferenceInformationAmount = 0.0f;
+        BigDecimal sumDifferenceInformationAmount = new BigDecimal(0);
 
         String object2 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|OriginalInformationAmount";
         Boolean hasOriginalInformationAmount = Boolean.FALSE;
-        Float sumOriginalInformationAmount = 0.0f;
+        BigDecimal sumOriginalInformationAmount = new BigDecimal(0);
 
         String object3 = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|SpecifiedTradeSettlementHeaderMonetarySummation|LineTotalAmount";
         Boolean hasLineTotalAmount = Boolean.FALSE;
-        Float sumLineTotalAmount = 0.0f;
+        BigDecimal sumLineTotalAmount = new BigDecimal(0);
 
         if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation()))) {
             SpecifiedTradeSettlementHeaderMonetarySummation stshms = rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getSpecifiedTradeSettlementHeaderMonetarySummation();
@@ -183,9 +190,10 @@ public class CalculationChecker extends Checker {
                     if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                         String value = amount.getValue() == null ? "" : amount.getValue();
                         try {
-                            sumDifferenceInformationAmount += Float.parseFloat(value);
-                        } catch (NumberFormatException ex) {
-                            errors.setErrorMassage("Check " + object1 + ": Invalid DifferenceInformationAmount (Float). Current DifferenceInformationAmount = " + value);
+                            BigDecimal amountValue = new BigDecimal(value);
+                            sumDifferenceInformationAmount = sumDifferenceInformationAmount.add(amountValue);
+                        } catch (NullPointerException ex) {
+                            errors.setErrorMassage("Check " + object1 + ": Invalid DifferenceInformationAmount (Decimal). Current DifferenceInformationAmount = " + value);
                         }
                     }
                 }
@@ -198,9 +206,10 @@ public class CalculationChecker extends Checker {
                     if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                         String value = amount.getValue() == null ? "" : amount.getValue();
                         try {
-                            sumOriginalInformationAmount += Float.parseFloat(value);
-                        } catch (NumberFormatException ex) {
-                            errors.setErrorMassage("Check " + object2 + ": Invalid OriginalInformationAmount (Float). Current OriginalInformationAmount = " + value);
+                            BigDecimal amountValue = new BigDecimal(value);
+                            sumOriginalInformationAmount = sumOriginalInformationAmount.add(amountValue);
+                        } catch (NullPointerException ex) {
+                            errors.setErrorMassage("Check " + object2 + ": Invalid OriginalInformationAmount (Decimal). Current OriginalInformationAmount = " + value);
                         }
                     }
                 }
@@ -212,9 +221,10 @@ public class CalculationChecker extends Checker {
                     if (!isNull(new N<>(() -> "" + amount.getValue()))) {
                         String value = amount.getValue() == null ? "" : amount.getValue();
                         try {
-                            sumLineTotalAmount += Float.parseFloat(value);
-                        } catch (NumberFormatException ex) {
-                            errors.setErrorMassage("Check " + object3 + ": Invalid LineTotalAmount (Float). Current LineTotalAmount = " + value);
+                            BigDecimal amountValue = new BigDecimal(value);
+                            sumLineTotalAmount = sumLineTotalAmount.add(amountValue);
+                        } catch (NullPointerException ex) {
+                            errors.setErrorMassage("Check " + object3 + ": Invalid LineTotalAmount (Decimal). Current LineTotalAmount = " + value);
                         }
                     }
                 }
@@ -223,7 +233,7 @@ public class CalculationChecker extends Checker {
 
         if (hasDifferenceInformationAmount.equals(Boolean.TRUE)) {
             if (hasOriginalInformationAmount && hasLineTotalAmount) {
-                if (!sumDifferenceInformationAmount.equals(sumOriginalInformationAmount + sumLineTotalAmount)) {
+                if (!sumDifferenceInformationAmount.equals(sumOriginalInformationAmount.subtract(sumLineTotalAmount))) {
                     errors.setErrorMassage("Check " + object1 + " or " + object2 + " or " + object3 + ": DifferenceInformationAmount must be equal to OriginalInformationAmount - LineTotalAmount. Current DifferenceInformationAmount = " + sumDifferenceInformationAmount.toString() + ", OriginalInformationAmount = " + sumOriginalInformationAmount.toString() + ", LineTotalAmount = " + sumLineTotalAmount.toString());
                 }
             } else {

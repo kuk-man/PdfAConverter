@@ -1,5 +1,6 @@
 package rd.checker.rule;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import model.ErrorMessage;
@@ -15,9 +16,9 @@ public class Rule_18 {
         }
 
         try {
-            Float.parseFloat(value);
-        } catch (NumberFormatException ex) {
-            errors.setErrorMassage("Check " + object + ": Invalid Quantity (Float). Current Quantity = " + value);
+            new BigDecimal(value);
+        } catch (NullPointerException ex) {
+            errors.setErrorMassage("Check " + object + ": Invalid Quantity (Decimal). Current Quantity = " + value);
         }
     }
 }

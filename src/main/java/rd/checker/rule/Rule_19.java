@@ -1,5 +1,6 @@
 package rd.checker.rule;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import model.ErrorMessage;
@@ -13,9 +14,9 @@ public class Rule_19 {
         (new Rule_14()).checkCurrencyCode(currencyCode, currencyCodes, object + "|CurrencyID", errors);
         
         try {
-            Float.parseFloat(value);
-        } catch (NumberFormatException ex) {
-            errors.setErrorMassage("Check " + object + ": Invalid Amount (Float). Current Amount = " + value);
+            new BigDecimal(value);
+        } catch (NullPointerException ex) {
+            errors.setErrorMassage("Check " + object + ": Invalid Amount (Decimal). Current Amount = " + value);
         }
     }
 }

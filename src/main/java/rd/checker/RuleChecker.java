@@ -1,5 +1,6 @@
 package rd.checker;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,7 @@ import rd.checker.rule.Rule_21;
 import rd.checker.rule.Rule_22;
 import rd.checker.rule.Rule_23;
 import rd.checker.rule.Rule_3;
+import rd.checker.rule.Rule_4;
 import rd.checker.rule.Rule_5;
 import rd.checker.rule.Rule_6;
 import rd.checker.rule.Rule_7_11;
@@ -76,12 +78,22 @@ public class RuleChecker extends Checker {
         List<String> languageCodes = dbCon.getLanguageCodes();
         Map<String, String> invoiceTypeCodeToName = dbCon.getInvoiceTypeCodeToName();
         Map<String, String> taxInvoiceTypeCodeToName = dbCon.getTaxInvoiceTypeCodeToName();
+
+        //??? prepare for front-end selection
         Map<String, String> purposeCodeToDescriptionForDebitNoteOnGoods = dbCon.getPurposeCodeToDescriptionForDebitNoteOnGoods();
         Map<String, String> purposeCodeToDescriptionForDebitNoteOnService = dbCon.getPurposeCodeToDescriptionForDebitNoteOnService();
         Map<String, String> purposeCodeToDescriptionForCreditNoteOnGoods = dbCon.getPurposeCodeToDescriptionForCreditNoteOnGoods();
         Map<String, String> purposeCodeToDescriptionForCreditNoteOnService = dbCon.getPurposeCodeToDescriptionForCreditNoteOnService();
         Map<String, String> purposeCodeToDescriptionForCancellationCauseOnNewTaxInvoice = dbCon.getPurposeCodeToDescriptionForCancellationCauseOnNewTaxInvoice();
         Map<String, String> purposeCodeToDescriptionForCancellationCauseOnNewReceipt = dbCon.getPurposeCodeToDescriptionForCancellationCauseOnNewReceipt();
+        
+        Map<String, String> purposeCodeToDescription = new HashMap<>();
+        purposeCodeToDescription.putAll(purposeCodeToDescriptionForDebitNoteOnGoods);
+        purposeCodeToDescription.putAll(purposeCodeToDescriptionForDebitNoteOnService);
+        purposeCodeToDescription.putAll(purposeCodeToDescriptionForCreditNoteOnGoods);
+        purposeCodeToDescription.putAll(purposeCodeToDescriptionForCreditNoteOnService);
+        purposeCodeToDescription.putAll(purposeCodeToDescriptionForCancellationCauseOnNewTaxInvoice);
+        purposeCodeToDescription.putAll(purposeCodeToDescriptionForCancellationCauseOnNewReceipt);
 
         // Transaction Type
         String transactionType = "";
@@ -98,13 +110,14 @@ public class RuleChecker extends Checker {
             (new Rule_3()).checkExchangedDocumentTypeCodeAndTypeName(transactionType, ed, invoiceTypeCodeToName, taxInvoiceTypeCodeToName, object, errors);
         }
 
-        // ???
-        // // rule 8.4
-        // // (2.5) ExchangedDocument|Purpose
-        // if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurpose()))) {
-        //     String purpose = rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurpose();
-        //     checkPurpose(String actionTransactionType, String causeTransactionType, String goodsService, String purposeCode, String purposeDescription);
-        // }
+        // rule 8.4
+        // (2.5) ExchangedDocument|Purpose
+        object = "CrossIndustryInvoice|ExchangedDocument";
+        if (!isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurpose()))) {
+            String purposeDescription = rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurpose();
+            String purposeCode = rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurposeCode();
+            (new Rule_4()).checkPurpose(purposeCode, purposeDescription, purposeCodeToDescription, object, errors);
+        }
         
         // rule 8.5
         // (2.8) [] ExchangedDocument|CreationDateTime
@@ -632,13 +645,12 @@ public class RuleChecker extends Checker {
         (new Rule_22()).checkGlobalID(value, object, errors);
     }
 
-    // ???
-    // // rule 8.23
-    // // (3.3.6) SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty
-    // object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
-    // if (isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {    
-    //     (new Rule_23()).checkInvoicerTradeParty(transactionType, object, errors);
-    // }
+    // rule 8.23
+    // (3.3.6) SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty
+    object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
+    if (isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {    
+        (new Rule_23()).checkInvoicerTradeParty(transactionType, object, errors);
+    }
 
         if (!errors.getErrorMessage().isBlank())
             return errors.getErrorMessage();

@@ -96,9 +96,10 @@ public class Transaction {
         String modifiedXml = "";
         
         // delete line
-        modifiedXml = xml.lines().filter(str -> !str.contains("RootXml") && 
-                                                !str.contains("<transaction>") &&
-                                                !str.contains("<business>"))
+        modifiedXml = xml.lines()
+            .filter(str -> !str.contains("RootXml") && 
+                           !str.contains("<transaction>")
+            )
             .collect(Collectors.joining("\n"));
 
         // adjust line

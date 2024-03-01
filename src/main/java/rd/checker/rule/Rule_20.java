@@ -19,12 +19,6 @@ public class Rule_20 extends Checker {
             String schemeAgencyId = stp.getGlobalID().getSchemeAgencyID() == null ? "" : stp.getGlobalID().getSchemeAgencyID();
             checkSpecifiedTradeProductGlobalID(id, schemeId, schemeAgencyId, object, errors);
         }
-
-        // String name, String description ???
-        // TIV/DCN/ABB	
-        // รายการข้อมูลชื่อสินค้า (3.4.2.3) รายละเอียดสินค้า (3.4.2.4) ต้องประกอบด้วยรายละเอียดสินค้า ได้แก่ ชื่อ ประเภท และ ชนิด ???
-        // RCT	
-        // รายการข้อมูลชื่อสินค้า (3.4.2.3) รายละเอียดสินค้า (3.4.2.4) ต้องประกอบด้วยรายละเอียดสินค้า ได้แก่ ชื่อ และ ชนิด ???
     }
 
     private void checkSpecifiedTradeProductID(String id, String object, ErrorMessage errors){
