@@ -3,11 +3,11 @@ package rd.checker.rule;
 import java.math.BigDecimal;
 import java.util.List;
 
-import model.ErrorMessage;
 import model.pojo.common.Quantity;
+import rd.checker.Checker;
 
-public class Rule_18 {
-    public void checkUnitCodeAndQuantity(Quantity quantity, List<String> unitCodes, String object, ErrorMessage errors){
+public class Rule_18 extends Checker {
+    public void checkUnitCodeAndQuantity(Quantity quantity, List<String> unitCodes, String object){
         String unitCode = quantity.getUnitCode() == null ? "" : quantity.getUnitCode();
         String value = quantity.getValue() == null ? "" : quantity.getValue();
 
@@ -17,7 +17,7 @@ public class Rule_18 {
 
         try {
             new BigDecimal(value);
-        } catch (NullPointerException ex) {
+        } catch (NumberFormatException ex) {
             errors.setErrorMassage("Check " + object + ": Invalid Quantity (Decimal). Current Quantity = " + value);
         }
     }

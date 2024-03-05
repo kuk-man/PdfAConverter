@@ -7,7 +7,7 @@ import model.pojo.common.Description;
 import rd.checker.Checker;
 
 public class Rule_17 extends Checker {
-    public void checkSpecifiedTradePaymentTerms(Description[] descriptions, List<String> tradePaymentCodes, String object, ErrorMessage errors){
+    public void checkSpecifiedTradePaymentTerms(Description[] descriptions, List<String> tradePaymentCodes, String object){
         for (Description description : descriptions) {
             // Value
             if (!isNull(new N<>(() -> "" + description.getValue()))) {

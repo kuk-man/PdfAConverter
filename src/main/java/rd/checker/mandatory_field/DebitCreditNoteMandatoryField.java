@@ -41,6 +41,9 @@ public class DebitCreditNoteMandatoryField extends MandatoryFieldChecker {
         // 2.4
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getIssueDateTime()),
             "CrossIndustryInvoice|ExchangedDocument|IssueDateTime");
+        // 2.6
+        checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getPurposeCode()),
+            "CrossIndustryInvoice|ExchangedDocument|PurposeCode");
         // 2.8
         checkValue(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getExchangedDocument().getCreationDateTime()),
             "CrossIndustryInvoice|ExchangedDocument|CreationDateTime");

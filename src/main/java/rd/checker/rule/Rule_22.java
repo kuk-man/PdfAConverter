@@ -2,10 +2,10 @@ package rd.checker.rule;
 
 import java.util.regex.Pattern;
 
-import model.ErrorMessage;
+import rd.checker.Checker;
 
-public class Rule_22 {
-    public void checkGlobalID(String globalID, String object, ErrorMessage errors){
+public class Rule_22 extends Checker {
+    public void checkGlobalID(String globalID, String object){
         String regex;
         Pattern pattern;
 

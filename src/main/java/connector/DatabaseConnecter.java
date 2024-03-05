@@ -12,14 +12,14 @@ public class DatabaseConnecter {
         // setup conection 
     }
 
-    public Map<String, String> getTransactionNameToType(){
+    public Map<String, String> getTransactionTypeToName(){
         HashMap<String, String> transactionNameToType = new HashMap<>();
-        transactionNameToType.put("Invoice", "INV");
-        transactionNameToType.put("Receipt", "RCT");
-        transactionNameToType.put("TaxInvoice", "TIV");
-        transactionNameToType.put("DebitCreditNote", "DCN");
-        transactionNameToType.put("CancellationNote", "CLN");
-        transactionNameToType.put("AbbreviatedTaxInvoice", "ABB");
+        transactionNameToType.put("INV", "Invoice");
+        transactionNameToType.put("RCT", "Receipt");
+        transactionNameToType.put("TIV", "TaxInvoice");
+        transactionNameToType.put("DCN", "DebitCreditNote");
+        transactionNameToType.put("CLN", "CancellationNote");
+        transactionNameToType.put("ABB", "AbbreviatedTaxInvoice");
         return transactionNameToType;
     }
 
