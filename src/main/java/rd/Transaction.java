@@ -61,7 +61,7 @@ public class Transaction {
             return errorMessage;
 
         // rule checker
-        RuleChecker ruleChecker = new RuleChecker("db connection");
+        RuleChecker ruleChecker = new RuleChecker("connection");
         errorMessage = ruleChecker.verifyRules(rootXml);
         if (!errorMessage.isBlank())
             return errorMessage;

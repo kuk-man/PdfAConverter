@@ -668,10 +668,9 @@ public class RuleChecker extends Checker {
         Rule_23 rule23 = new Rule_23();
         // (3.3.6) SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty
         object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
-        if (isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {    
+        if (isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {
             rule23.checkInvoicerTradeParty(transactionType, object);
         }
-
 
         if (!rule3.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule3.getError().getErrorMessage());
         if (!rule4.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule4.getError().getErrorMessage());
