@@ -38,6 +38,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import pdfa3.Config;
 import xades4j.XAdES4jException;
 import xades4j.properties.QualifyingProperty;
 import xades4j.properties.SignatureTimeStampProperty;
@@ -53,12 +54,11 @@ import xades4j.verification.XadesVerifier;
 
 public class Xades {
 	private CertificateFactory cf;
-	private XadesConfig config;
-    private String configFilePath = "src/main/resources/config/etax-xades.properties";
+	private Config config;
     
 	public Xades()
 	{
-        config = loadConfig(this.configFilePath);
+        config = new Config();
 		try {
 			cf = CertificateFactory.getInstance("X509");
 		} catch (CertificateException e) {
@@ -66,16 +66,18 @@ public class Xades {
 		}
 	}
 
-	public void verifyEnvelopedXml(String filePath)
+	public String verifyEnvelopedXml(InputStream inStream)
 			throws ParserConfigurationException, SAXException, IOException, CertificateException,
 			InvalidAlgorithmParameterException, NoSuchAlgorithmException, CRLException, KeyStoreException,
 			NoSuchProviderException, XAdES4jException {
+		
+		String verifyStr = "";
 
 		Collection<X509Certificate> certChainList;
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse(new FileInputStream(filePath));
+		Document doc = builder.parse(inStream);
 
 		NodeList nl = doc.getElementsByTagNameNS(javax.xml.crypto.dsig.XMLSignature.XMLNS, "Signature");
 		Element sigElem = (Element) nl.item(0);
@@ -134,10 +136,10 @@ public class Xades {
 		XadesVerifier verifier = profile.newVerifier();
 		XAdESVerificationResult r = verifier.verify(sigElem, null);
 
-		System.out.println("Signature form: " + r.getSignatureForm());
-		System.out.println("Algorithm URI: " + r.getSignatureAlgorithmUri());
-		System.out.println("Signed objects: " + r.getSignedDataObjects().size());
-		System.out.println("Qualifying properties: " + r.getQualifyingProperties().all().size());
+		verifyStr += "Signature form: " + r.getSignatureForm() + "\n";
+		verifyStr += "Algorithm URI: " + r.getSignatureAlgorithmUri() + "\n";
+		verifyStr += "Signed objects: " + r.getSignedDataObjects().size() + "\n";
+		verifyStr += "Qualifying properties: " + r.getQualifyingProperties().all().size() + "\n";
 
 		for (QualifyingProperty qp : r.getQualifyingProperties().all()) {
 			if ("SigningCertificate".equals(qp.getName())) {
@@ -146,16 +148,17 @@ public class Xades {
 					System.out.println(cert.getSubjectDN());
 				});
 			} else if ("SigningTime".equals(qp.getName())) {
-				System.out.println(
-						qp.getName() + ": " + ((SigningTimeProperty) qp).getSigningTime().getTime().toString());
+				verifyStr += qp.getName() + ": " + ((SigningTimeProperty) qp).getSigningTime().getTime().toString() + "\n";
 			} else if ("SignatureTimeStamp".equals(qp.getName())) {
-				System.out.println(qp.getName() + ": " + ((SignatureTimeStampProperty) qp).getTime().toString());
+				verifyStr += qp.getName() + ": " + ((SignatureTimeStampProperty) qp).getTime().toString() + "\n";
 			} else {
-				System.out.println("QP name: " + qp.getName());
+				verifyStr += "QP name: " + qp.getName() + "\n";
 			}
 		}
+
+		return verifyStr;
 	}
-	
+
 	private ArrayList<X509Certificate> getCertChain(X509Certificate cert) {		
 		ArrayList<X509Certificate> certChain = new ArrayList<X509Certificate>();
 		try {

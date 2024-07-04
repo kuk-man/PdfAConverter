@@ -69,8 +69,8 @@ public class Format extends Checker {
     }
 
     public void checkText(String text, int maxLength, String object) {
-        if (!(text.length() > 1 && text.length() <= maxLength))
-            errors.setErrorMassage("Check " + object + ": Invalid Text (> 1 & <= " + maxLength + " characters). Current Text = " + text);
+        if (!(text.length() > 0 && text.length() <= maxLength))
+            errors.setErrorMassage("Check " + object + ": Invalid Text (> 0 & <= " + maxLength + " characters). Current Text = " + text);
     }
 
     public void check16Text(String text, String object) {

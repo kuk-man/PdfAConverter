@@ -142,11 +142,11 @@ class FormatTest {
 
         format = new Format();
         format.checkText(invalidText1, maxLength, "Test");
-        assertEquals("Check " + object + ": Invalid Text (> 1 & <= " + maxLength + " characters). Current Text = " + invalidText1 + "\n", format.getError().getErrorMessage());
+        assertEquals("Check " + object + ": Invalid Text (> 0 & <= " + maxLength + " characters). Current Text = " + invalidText1 + "\n", format.getError().getErrorMessage());
 
         format = new Format();
         format.checkText(invalidText2, maxLength, "Test");
-        assertEquals("Check " + object + ": Invalid Text (> 1 & <= " + maxLength + " characters). Current Text = " + invalidText2 + "\n", format.getError().getErrorMessage());
+        assertEquals("Check " + object + ": Invalid Text (> 0 & <= " + maxLength + " characters). Current Text = " + invalidText2 + "\n", format.getError().getErrorMessage());
     }
 
     @Test

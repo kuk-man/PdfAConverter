@@ -2,6 +2,7 @@ package rd;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -85,6 +86,16 @@ public class Transaction {
         String xml = convertPojoToXml(rootXml);
         xml = modifyXml(xml, rootXml.getTransaction());
         return xml;
+    }
+
+    public String getDocumentType() {
+        if (!Objects.isNull(rootXml)) {
+            String docType = rootXml.getCrossIndustryInvoice().getExchangedDocument().getTypeCode();
+            if (docType.isEmpty())
+                return "";
+            return docType;
+        }
+        return "";
     }
 
     private String convertPojoToXml(RootXml rootXml) throws JsonProcessingException {

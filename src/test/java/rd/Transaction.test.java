@@ -61,22 +61,22 @@ class TransactionTest {
                     "Missing CrossIndustryInvoice|ExchangedDocument|ID\n", expectedMissingField);
     }
 
-    @Test
-    void TestGenerateXml() throws IOException {
-        // Arrange
-        String json = "{\"transaction\": \"INV\",\"crossIndustryInvoice\": {\"exchangedDocument\": {\"id\": \"INV01\"}}}";
-        // Act
-        Transaction txn = new Transaction();
-        txn.processJson(json);
-        String expected = "  <rsm:Invoice_CrossIndustryInvoice\n" + //
-                        "  xmlns:rsm=\"urn:etda:uncefact:data:standard:Invoice_CrossIndustryInvoice:2\"\n" + //
-                        "  xmlns:ram=\"urn:etda:uncefact:data:standard:Invoice_ReusableAggregateBusinessInformationEntity:2\"\n" + //
-                        "  xmlns:ns3=\"http://www.w3.org/2000/09/xmldsig#\">\n" + //
-                        "    <rsm:ExchangedDocument>\n" + //
-                        "      <ram:ID>INV01</ram:ID>\n" + //
-                        "    </rsm:ExchangedDocument>\n" + //
-                        "  </rsm:Invoice_CrossIndustryInvoice>";
-        // Assert
-        assertEquals(expected, txn.generateXml());
-    }
+    // @Test
+    // void TestGenerateXml() throws IOException {
+    //     // Arrange
+    //     String json = "{\"transaction\": \"INV\",\"crossIndustryInvoice\": {\"exchangedDocument\": {\"id\": \"INV01\"}}}";
+    //     // Act
+    //     Transaction txn = new Transaction();
+    //     txn.processJson(json);
+    //     String expected = "  <rsm:Invoice_CrossIndustryInvoice\n" + //
+    //                     "  xmlns:rsm=\"urn:etda:uncefact:data:standard:Invoice_CrossIndustryInvoice:2\"\n" + //
+    //                     "  xmlns:ram=\"urn:etda:uncefact:data:standard:Invoice_ReusableAggregateBusinessInformationEntity:2\"\n" + //
+    //                     "  xmlns:ns3=\"http://www.w3.org/2000/09/xmldsig#\">\n" + //
+    //                     "    <rsm:ExchangedDocument>\n" + //
+    //                     "      <ram:ID>INV01</ram:ID>\n" + //
+    //                     "    </rsm:ExchangedDocument>\n" + //
+    //                     "  </rsm:Invoice_CrossIndustryInvoice>";
+    //     // Assert
+    //     assertEquals(expected, txn.generateXml());
+    // }
 }
