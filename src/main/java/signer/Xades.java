@@ -70,27 +70,27 @@ public class Xades {
         dbf.setNamespaceAware(true);
         Document sourceDoc = null;
         
-            InputStream inputStream = new ByteArrayInputStream(inputFile.getBytes());
-            sourceDoc = dbf.newDocumentBuilder().parse(inputStream);
+        InputStream inputStream = new ByteArrayInputStream(inputFile.getBytes());
+        sourceDoc = dbf.newDocumentBuilder().parse(inputStream);
 
-            Element elementToSign = sourceDoc.getDocumentElement();
-            String refUri;
-                
-            if (elementToSign.hasAttribute("Id")) {
-                refUri = '#' + elementToSign.getAttribute("Id");
-            } else {
-                if (elementToSign.getParentNode().getNodeType() != Node.DOCUMENT_NODE) {
-                    throw new IllegalArgumentException("Element without Id must be the document root.");
-                }
-                refUri = "";
+        Element elementToSign = sourceDoc.getDocumentElement();
+        String refUri;
+        
+        if (elementToSign.hasAttribute("Id")) {
+            refUri = '#' + elementToSign.getAttribute("Id");
+        } else {
+            if (elementToSign.getParentNode().getNodeType() != Node.DOCUMENT_NODE) {
+                throw new IllegalArgumentException("Element without Id must be the document root.");
             }
-                
-            DataObjectDesc dataObjRef = new DataObjectReference(refUri).withTransform(new EnvelopedSignatureTransform());
-            XadesSignatureResult result = signer.sign(new SignedDataObjects(dataObjRef), sourceDoc.getDocumentElement());
-            XMLSignature signature = result.getSignature();
-            Document doc = signature.getDocument();
+            refUri = "";
+        }
+            
+        DataObjectDesc dataObjRef = new DataObjectReference(refUri).withTransform(new EnvelopedSignatureTransform());
+        XadesSignatureResult result = signer.sign(new SignedDataObjects(dataObjRef), sourceDoc.getDocumentElement());
+        XMLSignature signature = result.getSignature();
+        Document doc = signature.getDocument();
 
-            return doc;
+        return doc;
 	}
 
 	public void signEnvelopedXml(String inputPath, String outputPath)

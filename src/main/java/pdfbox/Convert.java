@@ -3,6 +3,9 @@ package pdfbox;
 import java.io.PrintStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 
 import org.w3c.dom.Document;
 
@@ -43,7 +46,6 @@ public class Convert {
 		// StringWriter stringWriter = new StringWriter();
 		// transformer.transform(new DOMSource(envelopedXml), new StreamResult(stringWriter));
 		// InputStream inStream = new ByteArrayInputStream(stringWriter.toString().getBytes());
-
 		// verifier.Xades verifier = new verifier.Xades();
 		// return verifier.verifyEnvelopedXml(inStream);
 	}

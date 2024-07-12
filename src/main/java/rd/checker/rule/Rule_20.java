@@ -2,7 +2,6 @@ package rd.checker.rule;
 
 import java.util.regex.Pattern;
 
-import model.ErrorMessage;
 import model.pojo.trade_transaction.trade_line_item.SpecifiedTradeProduct;
 import rd.checker.Checker;
 

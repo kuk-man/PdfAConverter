@@ -2,7 +2,6 @@ package rd.checker.rule;
 
 import java.util.Map;
 
-import model.ErrorMessage;
 import rd.checker.Checker;
 
 public class Rule_4 extends Checker {

@@ -56,8 +56,8 @@ public class Format extends Checker {
     }
 
     public void checkTrueFalse(String trueFalse, String object) {
-        if (!trueFalse.equals("True") && !trueFalse.equals("False"))
-            errors.setErrorMassage("Check " + object + ": Invalid True/False. Current True/False = " + trueFalse);
+        if (!trueFalse.equals("true") && !trueFalse.equals("false"))
+            errors.setErrorMassage("Check " + object + ": Invalid true/false. Current true/false = " + trueFalse);
     }
 
     public void checkPhoneNumber(String phoneNumber, String object) {

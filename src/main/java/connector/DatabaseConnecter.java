@@ -73,7 +73,7 @@ public class DatabaseConnecter {
     public Map<String, String> getPurposeCodeToDescriptionForDebitNoteOnService() {
         return Map.ofEntries(
             entry("DBNS01","การเพิ่มราคาค่าบริการ (บริการเกินกว่าข้อกาหนดที่ตกลงกัน)"),
-            entry("DBNS02","คานวณราคาค่าบริการ ผิดพลาดต่ากว่าที่เป็นจริง"),
+            entry("DBNS02","คำนวณราคาค่าบริการ ผิดพลาดต่ากว่าที่เป็นจริง"),
             entry("DBNS99","เหตุอื่น (ระบุสาเหตุ)")
         );
     }
@@ -116,15 +116,15 @@ public class DatabaseConnecter {
 
     // rule 8.7 - 8.11
     public List<String> getCitySubDivisionNames() {
-        return Arrays.asList("100701", "100702"); 
+        return Arrays.asList("100701", "100702", "103202", "100902"); 
     }
 
     public List<String> getCityNames() {
-        return Arrays.asList("1007");
+        return Arrays.asList("1007", "1009", "1032");
     }
 
     public List<String> getCountrySubDivisionIDs() {
-        return Arrays.asList("37", "15", "S");
+        return Arrays.asList("37", "15", "10","S");
     }
 
     public List<String> getCountryIDs() {
@@ -177,7 +177,8 @@ public class DatabaseConnecter {
     }
     // rule 8.18
     public List<String> getUnitCodes() {
-        return Arrays.asList("lift","small_spray","heat_lot","group","outfit","ration","shot","stick_military","hundred_fifteen_kg_drum",
+        return Arrays.asList( "กล่อง",
+            "lift","small_spray","heat_lot","group","outfit","ration","shot","stick_military","hundred_fifteen_kg_drum",
             "hundred_lb_drum","fiftyfive_gallon_(US)_drum","tank_truck","twenty_foot_container","forty_foot_container","decilitre_per_gram","gram_per_cubic_centimetre",
             "theoretical_pound","gram_per_square_centimetre","actual_ton","theoretical_ton","kilogram_per_square_metre","pound_per_thousand_square_foot",
             "horse_power_day_per_air_dry_metric_ton","catch_weight","kilogram_per_air_dry_metric_ton","kilopascal_square_metre_per_gram","kilopascal_per_millimetre",

@@ -2,7 +2,6 @@ package rd.checker.rule;
 
 import java.util.List;
 
-import model.ErrorMessage;
 import model.pojo.common.Name;
 import model.pojo.trade_transaction.trade_line_item.DesignatedProductClassification;
 import rd.checker.Checker;

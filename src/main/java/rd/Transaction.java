@@ -120,9 +120,9 @@ public class Transaction {
         modifiedXml = modifiedXml.replace("rsm:CrossIndustryInvoice", "rsm:" + transactionName + "_CrossIndustryInvoice");
         modifiedXml = modifiedXml.replaceFirst("_CrossIndustryInvoice", 
             "_CrossIndustryInvoice\n" +
-            "  xmlns:rsm=\"urn:etda:uncefact:data:standard:" + transactionName + "_CrossIndustryInvoice:2\"\n" +
+            "  xmlns:ns3=\"http://www.w3.org/2000/09/xmldsig#\"\n" +
             "  xmlns:ram=\"urn:etda:uncefact:data:standard:" + transactionName+ "_ReusableAggregateBusinessInformationEntity:2\"\n" +
-            "  xmlns:ns3=\"http://www.w3.org/2000/09/xmldsig#\""
+            "  xmlns:rsm=\"urn:etda:uncefact:data:standard:" + transactionName + "_CrossIndustryInvoice:2\""
         );
         return modifiedXml;
     }

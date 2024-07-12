@@ -91,8 +91,8 @@ class FormatTest {
     void testCheckTrueFalse() {
         // Arrange
         Format format;
-        String validTrueFalse1 = "True";
-        String validTrueFalse2 = "False";
+        String validTrueFalse1 = "true";
+        String validTrueFalse2 = "false";
         String invalidTrueFalse = "abc";
 
         // Act & Assert
@@ -106,14 +106,14 @@ class FormatTest {
 
         format = new Format();
         format.checkTrueFalse(invalidTrueFalse, "Test");
-        assertEquals("Check " + object + ": Invalid True/False. Current True/False = " + invalidTrueFalse + "\n", format.getError().getErrorMessage());
+        assertEquals("Check " + object + ": Invalid true/false. Current true/false = " + invalidTrueFalse + "\n", format.getError().getErrorMessage());
     }
 
     @Test
     void testCheckPhoneNumber() {
         // Arrange
         Format format;
-        String validPhoneNumber = "True";
+        String validPhoneNumber = "true";
         String invalidPhoneNumber = "abc";
 
         // Act & Assert
@@ -123,7 +123,7 @@ class FormatTest {
 
         format = new Format();
         format.checkTrueFalse(invalidPhoneNumber, "Test");
-        assertEquals("Check " + object + ": Invalid True/False. Current True/False = " + invalidPhoneNumber + "\n", format.getError().getErrorMessage());
+        assertEquals("Check " + object + ": Invalid true/false. Current true/false = " + invalidPhoneNumber + "\n", format.getError().getErrorMessage());
     }
 
     @Test

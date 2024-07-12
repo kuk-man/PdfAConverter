@@ -16,10 +16,10 @@ public class Rule_6 extends Checker {
 
         switch(schemeId) {
             case "":
-                regex = "^[A-Z0-9]{13}$";
+                regex = "^[A-Z0-9]{13}$|^[A-Z0-9]{18}$";
                 pattern = Pattern.compile(regex);
                 if (!pattern.matcher(value).matches()) {
-                    errors.setErrorMassage("Check " + object + ": Invalid ID (13 characters of A-Z/0-9). Current ID = " + value);
+                    errors.setErrorMassage("Check " + object + ": Invalid ID (13/18 characters of A-Z/0-9). Current ID = " + value);
                 }
             break;
             case "TXID": 

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import model.ErrorMessage;
 import model.pojo.trade_transaction.application_header.document.AdditionalReferencedDocument;
 import model.pojo.trade_transaction.application_header.document.BuyerOrderReferencedDocument;
 import rd.checker.Checker;

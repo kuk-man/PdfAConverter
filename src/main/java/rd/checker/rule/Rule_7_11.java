@@ -2,7 +2,6 @@ package rd.checker.rule;
 
 import java.util.List;
 
-import model.ErrorMessage;
 import rd.checker.Checker;
 
 public class Rule_7_11 extends Checker {

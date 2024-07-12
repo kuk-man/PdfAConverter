@@ -2,7 +2,6 @@ package rd.checker.rule;
 
 import java.util.List;
 
-import model.ErrorMessage;
 import model.pojo.common.Description;
 import rd.checker.Checker;
 

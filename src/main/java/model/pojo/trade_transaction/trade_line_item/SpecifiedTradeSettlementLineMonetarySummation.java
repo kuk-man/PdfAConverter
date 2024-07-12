@@ -18,7 +18,7 @@ public class SpecifiedTradeSettlementLineMonetarySummation {
     private Amount[] netLineTotalAmount;
 
     @JacksonXmlElementWrapper(useWrapping = false)
-    @JacksonXmlProperty(localName = "ram:NetIncludingTaxesLineTotal")
+    @JacksonXmlProperty(localName = "ram:NetIncludingTaxesLineTotalAmount")
     private Amount[] netIncludingTaxesLineTotalAmount;
 
     public Amount[] getTaxTotalAmount() {

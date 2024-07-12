@@ -664,13 +664,13 @@ public class RuleChecker extends Checker {
             rule22.checkGlobalID(value, object);
         }
 
-        // rule 8.23
-        Rule_23 rule23 = new Rule_23();
-        // (3.3.6) SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty
-        object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
-        if (isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {
-            rule23.checkInvoicerTradeParty(transactionType, object);
-        }
+        // // rule 8.23
+        // Rule_23 rule23 = new Rule_23();
+        // // (3.3.6) SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty
+        // object = "CrossIndustryInvoice|SupplyChainTradeTransaction|ApplicableHeaderTradeSettlement|InvoicerTradeParty";
+        // if (isNull(new N<>(() -> "" + rootXml.getCrossIndustryInvoice().getSupplyChainTradeTransaction().getApplicableHeaderTradeSettlement().getInvoicerTradeParty()))) {
+        //     rule23.checkInvoicerTradeParty(transactionType, object);
+        // }
 
         if (!rule3.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule3.getError().getErrorMessage());
         if (!rule4.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule4.getError().getErrorMessage());
@@ -688,7 +688,7 @@ public class RuleChecker extends Checker {
         if (!rule20.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule20.getError().getErrorMessage());
         if (!rule21.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule21.getError().getErrorMessage());
         if (!rule22.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule22.getError().getErrorMessage());
-        if (!rule23.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule23.getError().getErrorMessage());
+        // if (!rule23.getError().getErrorMessage().isBlank()) errors.setErrorMassage(rule23.getError().getErrorMessage());
 
         if (!errors.getErrorMessage().isBlank())
             return errors.getErrorMessage();

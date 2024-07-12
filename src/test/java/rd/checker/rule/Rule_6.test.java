@@ -44,21 +44,21 @@ class Rule_6Test {
         id.setValue(value);
         rule = new Rule_6();
         rule.checkID(id, object);
-        assertEquals("Check " + object + ": Invalid ID (13 characters of A-Z/0-9). Current ID = " + value + "\n", rule.getError().getErrorMessage());
+        assertEquals("Check " + object + ": Invalid ID (13/18 characters of A-Z/0-9). Current ID = " + value + "\n", rule.getError().getErrorMessage());
 
         value = "0123456789";
         id.setSchemeID("");
         id.setValue(value);
         rule = new Rule_6();
         rule.checkID(id, object);
-        assertEquals("Check " + object + ": Invalid ID (13 characters of A-Z/0-9). Current ID = " + value + "\n", rule.getError().getErrorMessage());
+        assertEquals("Check " + object + ": Invalid ID (13/18 characters of A-Z/0-9). Current ID = " + value + "\n", rule.getError().getErrorMessage());
 
         value = "0123456789AB?";
         id.setSchemeID("");
         id.setValue(value);
         rule = new Rule_6();
         rule.checkID(id, object);
-        assertEquals("Check " + object + ": Invalid ID (13 characters of A-Z/0-9). Current ID = " + value + "\n", rule.getError().getErrorMessage());
+        assertEquals("Check " + object + ": Invalid ID (13/18 characters of A-Z/0-9). Current ID = " + value + "\n", rule.getError().getErrorMessage());
 
         // TXID
         value = "012345678901234567";

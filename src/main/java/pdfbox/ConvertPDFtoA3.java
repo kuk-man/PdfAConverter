@@ -14,6 +14,7 @@ import java.util.Base64;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -102,6 +103,10 @@ public class ConvertPDFtoA3 {
 
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 		StringWriter stringWriter = new StringWriter();
 		transformer.transform(new DOMSource(envelopedXml), new StreamResult(stringWriter));
 		String xml = stringWriter.toString();

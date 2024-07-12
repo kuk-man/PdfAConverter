@@ -43,7 +43,7 @@ class Rule_16Test {
         // Arrange & Act & Assert
         // TypeCode
         typeCode = "XYZ";
-        chargeIndicator = "True";
+        chargeIndicator = "true";
         allowanceChargeAmount = "100.50";
         totalAmount = "100.50";
         compareValue = "Check " + object1 + "|TypeCode: TypeCode is not in the list. Current TypeCode = " + typeCode + "\n";
@@ -54,12 +54,12 @@ class Rule_16Test {
         chargeIndicator = "XYZ";
         allowanceChargeAmount = "100.50";
         totalAmount = "100.50";
-        compareValue = "Check " + object1 + "|ChargeIndicator: ChargeIndicator can be True/False only. Current ChargeIndicator = " + chargeIndicator + "\n";
+        compareValue = "Check " + object1 + "|ChargeIndicator: ChargeIndicator can be true/false only. Current ChargeIndicator = " + chargeIndicator + "\n";
         checkData(typeCode, chargeIndicator, allowanceChargeAmount, totalAmount, compareValue);
 
         // ActualAmount
         typeCode = "28";
-        chargeIndicator = "True";
+        chargeIndicator = "true";
         allowanceChargeAmount = "XYZ";
         totalAmount = "100.50";
         compareValue = "Check " + object1 + "|ActualAmount: Invalid ActualAmount (Decimal). Current ActualAmount = " + allowanceChargeAmount + "\n";
@@ -67,46 +67,46 @@ class Rule_16Test {
 
         // Charge
         typeCode = "28";
-        chargeIndicator = "True";
+        chargeIndicator = "true";
         allowanceChargeAmount = "100.50";
         totalAmount = "100.50";
         compareValue = "";
         checkData(typeCode, chargeIndicator, allowanceChargeAmount, totalAmount, compareValue);
 
         typeCode = "28";
-        chargeIndicator = "True";
+        chargeIndicator = "true";
         allowanceChargeAmount = "100.50";
         totalAmount = "XYZ";
         compareValue = "Check " + object2 + "|ChargeTotalAmount: Invalid ChargeTotalAmount (Decimal). Current ChargeTotalAmount = " + totalAmount + "\n";
         checkData(typeCode, chargeIndicator, allowanceChargeAmount, totalAmount, compareValue);
 
         typeCode = "28";
-        chargeIndicator = "True";
+        chargeIndicator = "true";
         allowanceChargeAmount = "100.50";
         totalAmount = "200";
-        compareValue = "Check " + object1 + "|ActualAmount or " + object2 + "|ChargeTotalAmount: ChargeIndicator=True (Charge) then Sum ActualAmount must equal to TotalAmount. Current Sum ActualAmount = " + allowanceChargeAmount + ", TotalAmount = " + totalAmount + "\n";
+        compareValue = "Check " + object1 + "|ActualAmount or " + object2 + "|ChargeTotalAmount: ChargeIndicator=true (Charge) then Sum ActualAmount must equal to TotalAmount. Current Sum ActualAmount = " + allowanceChargeAmount + ", TotalAmount = " + totalAmount + "\n";
         checkData(typeCode, chargeIndicator, allowanceChargeAmount, totalAmount, compareValue);
 
         // Allowance
         typeCode = "28";
-        chargeIndicator = "False";
+        chargeIndicator = "false";
         allowanceChargeAmount = "100.50";
         totalAmount = "100.50";
         compareValue = "";
         checkData(typeCode, chargeIndicator, allowanceChargeAmount, totalAmount, compareValue);
 
         typeCode = "28";
-        chargeIndicator = "False";
+        chargeIndicator = "false";
         allowanceChargeAmount = "100.50";
         totalAmount = "XYZ";
         compareValue = "Check " + object2 + "|AllowanceTotalAmount: Invalid AllowanceTotalAmount (Decimal). Current AllowanceTotalAmount = " + totalAmount + "\n";
         checkData(typeCode, chargeIndicator, allowanceChargeAmount, totalAmount, compareValue);
 
         typeCode = "28";
-        chargeIndicator = "False";
+        chargeIndicator = "false";
         allowanceChargeAmount = "100.50";
         totalAmount = "200";
-        compareValue = "Check " + object1 + "|ActualAmount or " + object2 + "|AllowanceTotalAmount: ChargeIndicator=False (Allowance) then Sum ActualAmount must equal to TotalAmount (..|SpecifiedTradeSettlementHeaderMonetarySummation|AllowanceTotalAmount). Current Sum ActualAmount = " + allowanceChargeAmount + ", TotalAmount = " + totalAmount + "\n";
+        compareValue = "Check " + object1 + "|ActualAmount or " + object2 + "|AllowanceTotalAmount: ChargeIndicator=false (Allowance) then Sum ActualAmount must equal to TotalAmount (..|SpecifiedTradeSettlementHeaderMonetarySummation|AllowanceTotalAmount). Current Sum ActualAmount = " + allowanceChargeAmount + ", TotalAmount = " + totalAmount + "\n";
         checkData(typeCode, chargeIndicator, allowanceChargeAmount, totalAmount, compareValue);
     }
 

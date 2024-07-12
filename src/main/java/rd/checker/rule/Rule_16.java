@@ -3,7 +3,6 @@ package rd.checker.rule;
 import java.math.BigDecimal;
 import java.util.List;
 
-import model.ErrorMessage;
 import model.pojo.common.Amount;
 import model.pojo.common.Charge;
 import model.pojo.trade_transaction.application_header.SpecifiedTradeSettlementHeaderMonetarySummation;
@@ -30,7 +29,7 @@ public class Rule_16 extends Checker {
             // ChargeIndicator
             if (!isNull(new N<>(() -> "" + allowanceCharge.getChargeIndicator()))) {
                 String chargeIndicator = allowanceCharge.getChargeIndicator();
-                if (chargeIndicator.equals("True") || chargeIndicator.equals("False")) {
+                if (chargeIndicator.equals("true") || chargeIndicator.equals("false")) {
                     // ActualAmount
                     if (!isNull(new N<>(() -> "" + allowanceCharge.getActualAmount()))) {
                         Amount[] actualAmounts = allowanceCharge.getActualAmount();
@@ -48,7 +47,7 @@ public class Rule_16 extends Checker {
                     if (monetarySummation != null)
                         checkTotalAmount(chargeIndicator, sumAmount, monetarySummation, object1, object2);
                 } else {
-                    errors.setErrorMassage("Check " + object1 + "|ChargeIndicator: ChargeIndicator can be True/False only. Current ChargeIndicator = " + chargeIndicator);
+                    errors.setErrorMassage("Check " + object1 + "|ChargeIndicator: ChargeIndicator can be true/false only. Current ChargeIndicator = " + chargeIndicator);
                 }
             }
         }
@@ -58,7 +57,7 @@ public class Rule_16 extends Checker {
         String object1, String object2) {
         BigDecimal totalAmount = new BigDecimal(0);
         switch (chargeIndicator) {
-            case "True":
+            case "true":
                 // ChargeTotalAmount
                 if (!isNull(new N<>(() -> "" + monetarySummation.getChargeTotalAmount()))) {
                     Amount[] totalAmounts = monetarySummation.getChargeTotalAmount();
@@ -76,11 +75,11 @@ public class Rule_16 extends Checker {
                         }
                     }
                     if (!sumAmount.equals(totalAmount)) {
-                        errors.setErrorMassage("Check " + object1 + "|ActualAmount or " + object2 + "|ChargeTotalAmount: ChargeIndicator=True (Charge) then Sum ActualAmount must equal to TotalAmount. Current Sum ActualAmount = " + sumAmount.toString() + ", TotalAmount = " + totalAmount.toString());
+                        errors.setErrorMassage("Check " + object1 + "|ActualAmount or " + object2 + "|ChargeTotalAmount: ChargeIndicator=true (Charge) then Sum ActualAmount must equal to TotalAmount. Current Sum ActualAmount = " + sumAmount.toString() + ", TotalAmount = " + totalAmount.toString());
                     }
                 }
                 break;
-            case "False":
+            case "false":
                 // AllowanceTotalAmount
                 if (!isNull(new N<>(() -> "" + monetarySummation.getAllowanceTotalAmount()))) {
                     Amount[] totalAmounts = monetarySummation.getAllowanceTotalAmount();
@@ -98,7 +97,7 @@ public class Rule_16 extends Checker {
                         }
                     }
                     if (!sumAmount.equals(totalAmount)) {
-                        errors.setErrorMassage("Check " + object1 + "|ActualAmount or " + object2 + "|AllowanceTotalAmount: ChargeIndicator=False (Allowance) then Sum ActualAmount must equal to TotalAmount (..|SpecifiedTradeSettlementHeaderMonetarySummation|AllowanceTotalAmount). Current Sum ActualAmount = " + sumAmount.toString() + ", TotalAmount = " + totalAmount.toString());
+                        errors.setErrorMassage("Check " + object1 + "|ActualAmount or " + object2 + "|AllowanceTotalAmount: ChargeIndicator=false (Allowance) then Sum ActualAmount must equal to TotalAmount (..|SpecifiedTradeSettlementHeaderMonetarySummation|AllowanceTotalAmount). Current Sum ActualAmount = " + sumAmount.toString() + ", TotalAmount = " + totalAmount.toString());
                     }
                 }
             break;
